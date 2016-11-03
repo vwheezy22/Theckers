@@ -45,7 +45,10 @@ public abstract class Piece {
     {
         return(ydelta);
     }
-    
+    public void setColor(Color _color)
+    {
+        color = _color;
+    }
     protected abstract void setHealth();    
     protected abstract void setAttack();    
     protected abstract void setRange();    
