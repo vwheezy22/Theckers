@@ -15,11 +15,14 @@ public class Pawn extends Piece{
     public Pawn(Color _color)
     {
         super(_color);
+        setStats();
+    }
+    public void setStats()
+    {
         setHealth();
         setAttack();
         setRange();
     }
-    
     public void setHealth()
     {
         health = HEALTH_LVL;

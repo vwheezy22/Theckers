@@ -16,15 +16,11 @@ public class Defender extends Piece {
     public Defender(Color _color)
     {
         super(_color);
-        setStats();
-    }
-    
-    public void setStats()
-    {
         setHealth();
         setAttack();
         setRange();
     }
+    
     public void setHealth()
     {
         health = HEALTH_LVL;

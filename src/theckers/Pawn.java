@@ -7,24 +7,19 @@ package theckers;
 
 import java.awt.*;
 
-
-public class Defender extends Piece {
-    final int HEALTH_LVL = 1000;
+public class Pawn extends Piece{
+    final int HEALTH_LVL = 250;
     final int ATTACK_LVL = 250;
-    final int RANGE_NERF = 25;
+    final int RANGE_NERF = 50;
     
-    public Defender(Color _color)
+    public Pawn(Color _color)
     {
         super(_color);
-        setStats();
-    }
-    
-    public void setStats()
-    {
         setHealth();
         setAttack();
         setRange();
     }
+    
     public void setHealth()
     {
         health = HEALTH_LVL;
@@ -42,13 +37,11 @@ public class Defender extends Piece {
     
     public void drawPiece(Graphics2D g, int row, int col)
     {
-        int xval[] = {Window.getX(col * getXDelta()) + getXDelta()/2, Window.getX(col * getXDelta()) + getXDelta(), Window.getX(col * getXDelta()) };
-        int yval[] = {Window.getY(row * getYDelta()), Window.getY(row * getYDelta()) + getYDelta(), Window.getY(row * getYDelta()) + getYDelta()  };
-        g.fillPolygon(xval, yval, xval.length);
         g.fillOval(Window.getX(col*getXDelta()),Window.getY(row*getYDelta()),getXDelta(),getYDelta());
         
         g.setColor(Color.black);
         g.setFont(new Font("Broadway",Font.PLAIN,20));
         g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2, Window.getY(row * getYDelta()) + getYDelta()/2); 
     }
+    
 }

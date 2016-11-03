@@ -7,11 +7,12 @@ public abstract class Piece {
     private int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
     private int ydelta = Window.getHeight2()/Board.NUM_ROWS;    
     
-    protected int health;
-    protected int attack;
+    protected Image pieceImage;
+    protected int health;       //the amount of health a piece has 
+    protected int attack;       //if move into another piece of the other team, the other piece loses health
+    protected int rangeAttack;  //if right-click on a piece of the other team, the other piece loses health
     protected int range;    //subtract a certain amount from attack for each square away when attacking
-    
-    
+    protected int num_moves;    //the amount of squares a certain piece can only move
     
     
     Piece(Color _color)
@@ -39,6 +40,16 @@ public abstract class Piece {
         return(range);
     }
     
+    public int getRangeAttack()
+    {
+        return(rangeAttack);
+    }
+    
+    public int getNumMoves()
+    {
+        return(num_moves);
+    }
+    
     public int getXDelta()
     {
         return(xdelta);
@@ -49,6 +60,21 @@ public abstract class Piece {
         return(ydelta);
     }
     
+    public Image getPieceImage()
+    {
+        return(pieceImage);
+    }
+    
+    public void setColor(Color _color)
+    {
+        color = _color;
+    }
+    
+    public void setPieceImage()
+    {
+        //set as default image for piece basically a try and catch
+       // pieceImage = Toolkit.getDefaultToolkit().getImage("./")
+    }
     protected abstract void setHealth();    
     protected abstract void setAttack();    
     protected abstract void setRange();    

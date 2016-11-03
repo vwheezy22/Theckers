@@ -14,13 +14,17 @@ public class Theckers extends JFrame implements Runnable {
     static Image iconImage;
     Graphics2D g;
     boolean animateFirstTime = true;
+    boolean player1Turn = true;
+    boolean onPiece = false;
     
     Board board;
+    Piece a = null;
 
     public static void main(String[] args) {
         Theckers frame = new Theckers();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setTitle("Theckers");
         //figure icon image out
         frame.setIconImage(iconImage);
@@ -30,10 +34,15 @@ public class Theckers extends JFrame implements Runnable {
     public Theckers() {
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                if (e.BUTTON1 == e.getButton() ) {
-                    int ydelta = Window.getHeight2()/Board.NUM_ROWS;
-                    int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
-
+                
+                
+                
+                int ydelta = Window.getHeight2()/Board.NUM_ROWS;
+                int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
+                
+                if (e.BUTTON1 == e.getButton() && !onPiece) {
+                    
+                    
                     int zcol = 0;
                     int zcolLoc = xdelta;
                     
@@ -42,7 +51,7 @@ public class Theckers extends JFrame implements Runnable {
                         if (zcolLoc*i < e.getX()-Window.getX(0))
                             zcol = i;
                     } 
-                    
+                    System.out.println(zcol);
                     int zrow = 0;
                     int zrowLoc = ydelta;
                     
@@ -51,16 +60,53 @@ public class Theckers extends JFrame implements Runnable {
                         if (zrowLoc*i < e.getY()-Window.getY(0))
                             zrow = i;
                     } 
-                    
-                    if(board.board[zrow][zcol] != null)
+                    System.out.println(zrow); 
+                    if(board.board[zrow][zcol]!=null)
                     {
-                        
+                        onPiece=true;
+                       
+                        a=board.board[zrow][zcol];
+                        board.board[zrow][zcol]=null;
+//                        a.drawPiece(g, zrow, zcol);
+                       
                     }
+                    System.out.println(a); 
                     
                 }
-
-                if (e.BUTTON3 == e.getButton()) {
+                if (e.BUTTON2 == e.getButton()) {
                     reset();
+                }
+                if (e.BUTTON3 == e.getButton() && onPiece) {
+                    
+                    
+                    
+                    int zcol = 0;
+                    int zcolLoc = xdelta;
+                    
+                    for (int i=0;i<Board.NUM_COLUMNS;i++)
+                    {
+                        if (zcolLoc*i < e.getX()-Window.getX(0))
+                            zcol = i;
+                    } 
+//                    System.out.println(zcol);
+                    int zrow = 0;
+                    int zrowLoc = ydelta;
+                    
+                    for (int i=0;i<Board.NUM_ROWS;i++)
+                    {
+                        if (zrowLoc*i < e.getY()-Window.getY(0))
+                            zrow = i;
+                    } 
+//                    System.out.println(zrow); 
+                    if(board.board[zrow][zcol]==null)
+                    {
+                        
+                        board.board[zrow][zcol]=a;
+                        onPiece=false;
+                       
+                        
+                        
+                    }
                 }
                 repaint();
             }
