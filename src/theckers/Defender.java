@@ -19,6 +19,7 @@ public class Defender extends Piece {
         setHealth();
         setAttack();
         setRange();
+        setPieceImage();
     }
     
     public void setHealth()
@@ -34,6 +35,11 @@ public class Defender extends Piece {
     public void setRange()
     {
         range = RANGE_NERF;
+    }
+    
+    public void setPieceImage()
+    {
+        pieceImage = Toolkit.getDefaultToolkit().getImage("./pawn.png");
     }
     
     public void drawPiece(Graphics2D g, int row, int col)
@@ -52,5 +58,9 @@ public class Defender extends Piece {
     public void drawPiece(Graphics2D g, int row, int col, Theckers obj)
     {
         g.drawImage(pieceImage, Window.getX(col*getXDelta()), Window.getY(row*getYDelta()), getXDelta(), getYDelta(), obj);
+        
+        g.setColor(Color.black);
+        g.setFont(new Font("Broadway",Font.PLAIN,20));
+        g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2, Window.getY(row * getYDelta()) + getYDelta()/2); 
     }
 }
