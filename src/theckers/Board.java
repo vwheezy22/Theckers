@@ -50,7 +50,7 @@ public class Board {
     }
     
     
-    public void drawBoard(Graphics2D g)
+    public void drawBoard(Graphics2D g, Theckers obj)
     {
          //draw grid
         g.setColor(Color.black);
@@ -73,7 +73,7 @@ public class Board {
                 if (board[zi][zx] != null)
                 {
                     g.setColor(board[zi][zx].getColor()); 
-                    board[zi][zx].drawPiece(g, zi, zx);
+                    board[zi][zx].drawPiece(g, zi, zx, obj);
                 }
             }
         }

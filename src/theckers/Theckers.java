@@ -179,7 +179,7 @@ public class Theckers extends JFrame implements Runnable {
             return;
         }
         
-        board.drawBoard(g);
+        board.drawBoard(g, this);
 
         
          

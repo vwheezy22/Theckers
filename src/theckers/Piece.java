@@ -79,5 +79,6 @@ public abstract class Piece {
     protected abstract void setAttack();    
     protected abstract void setRange();    
     protected abstract void drawPiece(Graphics2D g, int row, int col);
+    protected abstract void drawPiece(Graphics2D g, int row, int col, Theckers obj);
     
 }
