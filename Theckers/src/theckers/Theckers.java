@@ -24,6 +24,7 @@ public class Theckers extends JFrame implements Runnable {
         Theckers frame = new Theckers();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setTitle("Theckers");
         //figure icon image out
         frame.setIconImage(iconImage);

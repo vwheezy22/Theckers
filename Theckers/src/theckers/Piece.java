@@ -4,11 +4,14 @@ import java.awt.*;
 
 public abstract class Piece {
     private Color color;
-    protected int health;
-    protected int attack;
-    protected int range;    //subtract a certain amount from attack for each square away when attacking
     private int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
-    private int ydelta = Window.getHeight2()/Board.NUM_ROWS;
+    private int ydelta = Window.getHeight2()/Board.NUM_ROWS;    
+    
+    protected int health;   
+    protected int attack;
+    protected int rangeAttack;
+    protected int range;    //subtract a certain amount from attack for each square away when attacking
+    protected int 
     
     
     Piece(Color _color)
