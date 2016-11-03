@@ -66,7 +66,7 @@ public class Theckers extends JFrame implements Runnable {
                        
                         a=board.board[zrow][zcol];
                         board.board[zrow][zcol]=null;
-//                        a.drawPiece(g, zrow, zcol);
+                        a.drawPiece(g, 5, 5);
                        
                     }
                     System.out.println(a); 

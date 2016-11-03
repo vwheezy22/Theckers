@@ -78,10 +78,10 @@ public class Board {
             }
         }
     }
-//    public void drawPiece(Graphics2D g,Piece x,int zi, int zx)
+//    public static void drawPiece(Graphics2D g,Piece x,int zi, int zx)
 //    {
 //         
-//        //Draw the piece.        
+//        Draw the piece.        
 //       
 //                    g.setColor(x.getColor()); 
 //                    x.drawPiece(g, zi, zx);
