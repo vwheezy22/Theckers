@@ -1,0 +1,6 @@
+THIS BUILD CONTAINS:
+-stats: health, attack, range nerf, range attack, and moves allowed
+-very minimalistic and basic movement code
+-pawn && defender generic images
+-pawn && defender pieces
+-background image working, but colors clash with images of pieces
