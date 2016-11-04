@@ -10,6 +10,8 @@ public class Board {
     public final int xdelta = Window.getWidth2()/NUM_ROWS;
     public final int ydelta = Window.getHeight2()/NUM_COLUMNS;
     
+    private boolean onPiece;
+    
     private Color player1Color = Color.pink;
     private Color player2Color = new Color(0,221,149);
     
@@ -46,6 +48,7 @@ public class Board {
             
     public Board()
     {
+        onPiece = false;
         setBackGroundImage();
         
         for(int row = 0; row < board.length; row++)
@@ -108,10 +111,14 @@ public class Board {
 //               
 //    }
     
-    public void initBoard()
+    public boolean getOnPiece()
     {
-        
-        
+        return(onPiece);
+    }
+    
+    public void setOnPiece(boolean _onPiece)
+    {
+        onPiece = _onPiece;
     }
     
     public void setBackGroundImage()

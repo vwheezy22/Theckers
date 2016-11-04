@@ -2,7 +2,7 @@ TODO ENHANCEMENTS:
 -fix color clashing with background
 -find appropriate images for pieces
 -create more pieces
--fix movement code
+-fix highlight code, put movement code into class
 -create movement code
 -create attacking and ranged attacking code
 -implement the main menu && the networking code

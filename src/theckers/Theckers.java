@@ -13,7 +13,6 @@ public class Theckers extends JFrame implements Runnable {
     Graphics2D g;
     boolean animateFirstTime = true;
     boolean player1Turn = true;
-    boolean onPiece = false;
     int zrowTemp;
     int zcolTemp;
     
@@ -36,7 +35,7 @@ public class Theckers extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
                 
                 
-                if (e.BUTTON1 == e.getButton() && !onPiece) {
+                if (e.BUTTON1 == e.getButton() && !board.getOnPiece()) {
                     
                     
                     int zcol = 0;
@@ -59,11 +58,12 @@ public class Theckers extends JFrame implements Runnable {
                     System.out.println(zrow); 
                     if(board.board[zrow][zcol] != null)
                     {
-                        onPiece=true;
+                        board.setOnPiece(true);
                        
                         a=board.board[zrow][zcol];
                         zrowTemp=zrow;
                         zcolTemp=zcol;
+                        
 //                        board.board[zrow][zcol]=null;
 //                        a.drawPiece(g, zrow, zcol);
                        
@@ -71,13 +71,8 @@ public class Theckers extends JFrame implements Runnable {
                     System.out.println(a); 
                     
                 }
-//                if (e.BUTTON2 == e.getButton()) {
-//                    reset();
-//                }
-                if (e.BUTTON3 == e.getButton() && onPiece) {
-                    
-                    
-                    
+                
+                if (e.BUTTON1 == e.getButton() && board.getOnPiece()) {
                     int zcol = 0;
                     int zcolLoc = board.xdelta;
                     
@@ -100,12 +95,15 @@ public class Theckers extends JFrame implements Runnable {
                     {
                         board.board[zrowTemp][zcolTemp]=null;
                         board.board[zrow][zcol] = a;
-                        onPiece = false;
+                        board.setOnPiece(false);
                        
                         
                         
                     }
                 }
+
+                
+                
                 repaint();
             }
         });
