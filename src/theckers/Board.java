@@ -68,7 +68,7 @@ public class Board {
     {
         //draws the background image
         //need to fix colors if we want this as our background
-        //g.drawImage(backgroundImage, Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2(), obj);
+        g.drawImage(backgroundImage, Window.getX(0), Window.getY(0), Window.getWidth2(), Window.getHeight2(), obj);
         
          //draw grid
         g.setColor(Color.black);
