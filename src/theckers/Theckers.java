@@ -2,10 +2,8 @@ package theckers;
 
 import java.io.*;
 import java.awt.*;
-import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.GradientPaint;
 
 public class Theckers extends JFrame implements Runnable {
     
@@ -169,7 +167,7 @@ public class Theckers extends JFrame implements Runnable {
         int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
 //fill border
         g.setColor(Color.white);
-        g.fillPolygon(x, y, 4);
+        g.fillPolygon(x, y, 4);        
 // draw border
         g.setColor(Color.red);
         g.drawPolyline(x, y, 5);
@@ -227,7 +225,7 @@ public class Theckers extends JFrame implements Runnable {
                 Window.xsize = getSize().width;
                 Window.ysize = getSize().height;
             }
-
+                        
             reset();
 
         }

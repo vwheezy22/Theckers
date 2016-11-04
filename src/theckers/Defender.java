@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package theckers;
 
 import java.awt.*;
 
 
 public class Defender extends Piece {
+    //implement enumeration to show the directions piece is allowed to move
+    
     final int HEALTH_LVL = 1000;
-    final int ATTACK_LVL = 250;
+    final int ATTACK_LVL = 500;
     final int RANGE_NERF = 25;
+    final int RANGE_ATTACK = 250;
+    final int MOVES_ALLOWED = 3;
     
     public Defender(Color _color)
     {
@@ -19,6 +18,8 @@ public class Defender extends Piece {
         setHealth();
         setAttack();
         setRange();
+        setRangeAttack();
+        setMovesAllowed();
         setPieceImage();
     }
     
@@ -37,9 +38,19 @@ public class Defender extends Piece {
         range = RANGE_NERF;
     }
     
+    public void setRangeAttack()
+    {
+        rangeAttack = RANGE_ATTACK;
+    }
+    
+    public void setMovesAllowed()
+    {
+        num_moves = MOVES_ALLOWED;
+    }
+    
     public void setPieceImage()
     {
-        pieceImage = Toolkit.getDefaultToolkit().getImage("./pawn.png");
+        pieceImage = Toolkit.getDefaultToolkit().getImage("./runnable/rook.png");
     }
     
     public void drawPiece(Graphics2D g, int row, int col)

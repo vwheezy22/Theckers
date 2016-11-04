@@ -11,6 +11,8 @@ public class Pawn extends Piece{
     final int HEALTH_LVL = 250;
     final int ATTACK_LVL = 250;
     final int RANGE_NERF = 50;
+    final int RANGE_ATTACK = 250;
+    final int MOVES_ALLOWED = 2;
     
     
     public Pawn(Color _color)
@@ -37,13 +39,24 @@ public class Pawn extends Piece{
         range = RANGE_NERF;
     }
     
+    public void setRangeAttack()
+    {
+        rangeAttack = RANGE_ATTACK;
+    }
+    
+    public void setMovesAllowed()
+    {
+        num_moves = MOVES_ALLOWED;
+    }
+    
     public void setPieceImage()
     {
-        pieceImage = Toolkit.getDefaultToolkit().getImage("./pawn.png");
+        pieceImage = Toolkit.getDefaultToolkit().getImage("./runnable/pawn.png");
     }
     
     public void drawPiece(Graphics2D g, int row, int col)
     {
+        //default drawing of piece without image
         g.fillOval(Window.getX(col*getXDelta()),Window.getY(row*getYDelta()),getXDelta(),getYDelta());
         
         g.setColor(Color.black);
