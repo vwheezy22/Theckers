@@ -10,7 +10,7 @@ public class Defender extends Piece {
     final int ATTACK_LVL = 500;
     final int RANGE_NERF = 25;
     final int RANGE_ATTACK = 250;
-    final int MOVES_ALLOWED = 3;
+    final int MOVES_ALLOWED = 4;
     
     public Defender(Color _color)
     {
@@ -55,9 +55,6 @@ public class Defender extends Piece {
     
     public void drawPiece(Graphics2D g, int row, int col)
     {
-        int xval[] = {Window.getX(col * getXDelta()) + getXDelta()/2, Window.getX(col * getXDelta()) + getXDelta(), Window.getX(col * getXDelta()) };
-        int yval[] = {Window.getY(row * getYDelta()), Window.getY(row * getYDelta()) + getYDelta(), Window.getY(row * getYDelta()) + getYDelta()  };
-        g.fillPolygon(xval, yval, xval.length);
         g.fillOval(Window.getX(col*getXDelta()),Window.getY(row*getYDelta()),getXDelta(),getYDelta());
         
         g.setColor(Color.black);

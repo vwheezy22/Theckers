@@ -34,15 +34,11 @@ public class Theckers extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
                 
                 
-                
-                int ydelta = Window.getHeight2()/Board.NUM_ROWS;
-                int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
-                
                 if (e.BUTTON1 == e.getButton() && !onPiece) {
                     
                     
                     int zcol = 0;
-                    int zcolLoc = xdelta;
+                    int zcolLoc = board.xdelta;
                     
                     for (int i=0;i<Board.NUM_COLUMNS;i++)
                     {
@@ -51,7 +47,7 @@ public class Theckers extends JFrame implements Runnable {
                     } 
                     System.out.println(zcol);
                     int zrow = 0;
-                    int zrowLoc = ydelta;
+                    int zrowLoc = board.ydelta;
                     
                     for (int i=0;i<Board.NUM_ROWS;i++)
                     {
@@ -59,7 +55,7 @@ public class Theckers extends JFrame implements Runnable {
                             zrow = i;
                     } 
                     System.out.println(zrow); 
-                    if(board.board[zrow][zcol]!=null)
+                    if(board.board[zrow][zcol] != null)
                     {
                         onPiece=true;
                        
@@ -71,36 +67,36 @@ public class Theckers extends JFrame implements Runnable {
                     System.out.println(a); 
                     
                 }
-                if (e.BUTTON2 == e.getButton()) {
-                    reset();
-                }
+//                if (e.BUTTON2 == e.getButton()) {
+//                    reset();
+//                }
                 if (e.BUTTON3 == e.getButton() && onPiece) {
                     
                     
                     
                     int zcol = 0;
-                    int zcolLoc = xdelta;
+                    int zcolLoc = board.xdelta;
                     
                     for (int i=0;i<Board.NUM_COLUMNS;i++)
                     {
-                        if (zcolLoc*i < e.getX()-Window.getX(0))
+                        if (zcolLoc*i < e.getX() - Window.getX(0))
                             zcol = i;
                     } 
 //                    System.out.println(zcol);
                     int zrow = 0;
-                    int zrowLoc = ydelta;
+                    int zrowLoc = board.ydelta;
                     
                     for (int i=0;i<Board.NUM_ROWS;i++)
                     {
-                        if (zrowLoc*i < e.getY()-Window.getY(0))
+                        if (zrowLoc*i < e.getY() - Window.getY(0))
                             zrow = i;
                     } 
 //                    System.out.println(zrow); 
-                    if(board.board[zrow][zcol]==null)
+                    if(board.board[zrow][zcol] == null)
                     {
                         
-                        board.board[zrow][zcol]=a;
-                        onPiece=false;
+                        board.board[zrow][zcol] = a;
+                        onPiece = false;
                        
                         
                         
@@ -202,6 +198,7 @@ public class Theckers extends JFrame implements Runnable {
         while (true) {
             animate();
             repaint();
+            //may slow down frame rate to show animation of piece losing health when hit with attack or range attack
             double seconds = .1;    //time that 1 frame takes.
             int miliseconds = (int) (1000.0 * seconds);
             try {
@@ -213,6 +210,8 @@ public class Theckers extends JFrame implements Runnable {
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
         
+        //method to ask if you really want to reset game, yes or no. surround all of reset method with this for loop
+        //if(board.checkReset())
         board = new Board();
 
     }

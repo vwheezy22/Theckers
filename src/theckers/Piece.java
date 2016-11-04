@@ -6,6 +6,7 @@ public abstract class Piece {
     private Color color;
     private int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
     private int ydelta = Window.getHeight2()/Board.NUM_ROWS;    
+    private boolean isPlayer1;
     
     protected Image pieceImage;
     protected int health;       //the amount of health a piece has 
@@ -23,6 +24,11 @@ public abstract class Piece {
     public Color getColor()
     {
         return(color);
+    }
+    
+    public boolean isPlayer1()
+    {
+        return(isPlayer1);
     }
     
     public int getHealth()
@@ -68,6 +74,11 @@ public abstract class Piece {
     public void setColor(Color _color)
     {
         color = _color;
+    }
+    
+    public void setIsPlayer1(boolean _isPlayer1)
+    {
+        isPlayer1 = _isPlayer1;
     }
     
     public void setPieceImage()

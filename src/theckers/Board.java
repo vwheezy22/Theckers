@@ -10,8 +10,8 @@ public class Board {
     public final int xdelta = Window.getWidth2()/NUM_ROWS;
     public final int ydelta = Window.getHeight2()/NUM_COLUMNS;
     
-    public Color player1Color = Color.pink;
-    public Color player2Color = new Color(0,221,149);
+    private Color player1Color = Color.pink;
+    private Color player2Color = new Color(0,221,149);
     
     private Image backgroundImage;
     
@@ -47,6 +47,20 @@ public class Board {
     public Board()
     {
         setBackGroundImage();
+        
+        for(int row = 0; row < board.length; row++)
+        {
+            for(int col = 0; col < board.length; col++)
+            {
+                if(board[row][col] != null)
+                {
+                    if(board[row][col].getColor() == player1Color)
+                        board[row][col].setIsPlayer1(true);
+                    else if(board[row][col].getColor() == player2Color)
+                        board[row][col].setIsPlayer1(false);
+                }
+            }
+        }
     }
     
     
@@ -78,6 +92,8 @@ public class Board {
                 {
                     g.setColor(board[zi][zx].getColor()); 
                     board[zi][zx].drawPiece(g, zi, zx, obj);
+                    //draw piece - no image
+                    //board[zi][zx].drawPiece(g, zi, zx);
                 }
             }
         }
