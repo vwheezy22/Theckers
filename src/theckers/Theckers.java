@@ -14,6 +14,8 @@ public class Theckers extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     boolean player1Turn = true;
     boolean onPiece = false;
+    int zrowTemp;
+    int zcolTemp;
     
     Board board;
     Piece a = null;
@@ -60,7 +62,9 @@ public class Theckers extends JFrame implements Runnable {
                         onPiece=true;
                        
                         a=board.board[zrow][zcol];
-                        board.board[zrow][zcol]=null;
+                        zrowTemp=zrow;
+                        zcolTemp=zcol;
+//                        board.board[zrow][zcol]=null;
 //                        a.drawPiece(g, zrow, zcol);
                        
                     }
@@ -94,7 +98,7 @@ public class Theckers extends JFrame implements Runnable {
 //                    System.out.println(zrow); 
                     if(board.board[zrow][zcol] == null)
                     {
-                        
+                        board.board[zrowTemp][zcolTemp]=null;
                         board.board[zrow][zcol] = a;
                         onPiece = false;
                        
