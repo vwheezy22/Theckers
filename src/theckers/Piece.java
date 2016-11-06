@@ -6,7 +6,6 @@ public abstract class Piece {
     private Color color;
     private int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
     private int ydelta = Window.getHeight2()/Board.NUM_ROWS;    
-    private boolean isPlayer1;
     
     protected Image pieceImage;
     protected int health;       //the amount of health a piece has 
@@ -24,11 +23,6 @@ public abstract class Piece {
     public Color getColor()
     {
         return(color);
-    }
-    
-    public boolean isPlayer1()
-    {
-        return(isPlayer1);
     }
     
     public int getHealth()
@@ -76,15 +70,14 @@ public abstract class Piece {
         color = _color;
     }
     
-    public void setIsPlayer1(boolean _isPlayer1)
-    {
-        isPlayer1 = _isPlayer1;
-    }
-    
-    public void setPieceImage()
+    public void setPieceImage(String _player1ImagePath, String _player2ImagePath)
     {
         //set as default image for piece basically a try and catch
-       // pieceImage = Toolkit.getDefaultToolkit().getImage("./")
+        if(getColor() == Board.player1Color)
+            pieceImage = Toolkit.getDefaultToolkit().getImage(_player1ImagePath);
+        else if(getColor() == Board.player2Color)
+            pieceImage = Toolkit.getDefaultToolkit().getImage(_player2ImagePath);
+        
     }
     
     protected void drawPiece(Graphics2D g, int row, int col)
@@ -98,7 +91,10 @@ public abstract class Piece {
     
     protected void drawPiece(Graphics2D g, int row, int col, Theckers obj)
     {
-        g.drawImage(pieceImage, Window.getX(col*getXDelta()), Window.getY(row*getYDelta()), getXDelta(), getYDelta(), obj);
+        if(pieceImage != null)
+            g.drawImage(pieceImage, Window.getX(col*getXDelta()), Window.getY(row*getYDelta()), getXDelta(), getYDelta(), obj);
+        else
+            drawPiece(g, row, col);
         
         g.setColor(Color.black);
         g.setFont(new Font("Broadway",Font.PLAIN,20));

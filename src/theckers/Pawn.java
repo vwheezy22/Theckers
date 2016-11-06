@@ -8,11 +8,14 @@ package theckers;
 import java.awt.*;
 
 public class Pawn extends Piece{
-    final int HEALTH_LVL = 250;
-    final int ATTACK_LVL = 250;
-    final int RANGE_NERF = 50;
-    final int RANGE_ATTACK = 250;
-    final int MOVES_ALLOWED = 3;
+    final private int HEALTH_LVL = 500;
+    final private int ATTACK_LVL = 250;
+    final private int RANGE_NERF = 50;
+    final private int RANGE_ATTACK = 250;
+    final private int MOVES_ALLOWED = 2;
+    
+    final private String player1ImagePath = "./runnable/pawn.png";
+    final private String player2ImagePath = "./runnable/pawn.png";
     
     
     public Pawn(Color _color)
@@ -53,7 +56,7 @@ public class Pawn extends Piece{
     
     public void setPieceImage()
     {
-        pieceImage = Toolkit.getDefaultToolkit().getImage("./runnable/pawn.png");
+        super.setPieceImage(player1ImagePath, player2ImagePath);
     }
     
     //default drawing of piece without image

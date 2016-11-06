@@ -6,11 +6,14 @@ import java.awt.*;
 public class Defender extends Piece {
     //implement enumeration to show the directions piece is allowed to move
     
-    final int HEALTH_LVL = 1000;
-    final int ATTACK_LVL = 500;
-    final int RANGE_NERF = 25;
-    final int RANGE_ATTACK = 250;
-    final int MOVES_ALLOWED = 4;
+    final private int HEALTH_LVL = 1000;
+    final private int ATTACK_LVL = 500;
+    final private int RANGE_NERF = 25;
+    final private int RANGE_ATTACK = 250;
+    final private int MOVES_ALLOWED = 3;
+    
+    final private String player1ImagePath = "./runnable/rook.png"; 
+    final private String player2ImagePath = "./runnable/rook.png"; 
     
     public Defender(Color _color)
     {
@@ -50,7 +53,7 @@ public class Defender extends Piece {
     
     public void setPieceImage()
     {
-        pieceImage = Toolkit.getDefaultToolkit().getImage("./runnable/rook.png");
+        super.setPieceImage(player1ImagePath, player2ImagePath );
     }
     
     public void drawPiece(Graphics2D g, int row, int col)

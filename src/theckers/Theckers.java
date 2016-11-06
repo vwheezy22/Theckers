@@ -202,7 +202,7 @@ public class Theckers extends JFrame implements Runnable {
             animate();
             repaint();
             //may slow down frame rate to show animation of piece losing health when hit with attack or range attack
-            double seconds = .1;    //time that 1 frame takes.
+            double seconds = 1/TimeCount.getFrameRate();    //time that 1 frame takes.
             int miliseconds = (int) (1000.0 * seconds);
             try {
                 Thread.sleep(miliseconds);
@@ -215,7 +215,10 @@ public class Theckers extends JFrame implements Runnable {
         
         //method to ask if you really want to reset game, yes or no. surround all of reset method with this for loop
         //if(board.checkReset())
-        board = new Board();
+        {
+            board = new Board();
+            TimeCount.init();
+        }
 
     }
 /////////////////////////////////////////////////////////////////////////

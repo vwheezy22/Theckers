@@ -14,8 +14,8 @@ public class Board {
     private int onPieceRow;
     private int onPieceCol;
     
-    private Color player1Color = Color.pink;
-    private Color player2Color = new Color(0,221,149);
+    public static Color player1Color = Color.pink;
+    public static Color player2Color = new Color(0,221,149);
     
     private Image backgroundImage;
     
@@ -23,9 +23,11 @@ public class Board {
     //pieces
         private Piece PW1 = new Pawn(player1Color);
         private Piece DF1 = new Defender(player1Color);
+        private Piece BL1 = new Blitzer(player1Color);
         
         private Piece PW2 = new Pawn(player2Color);
         private Piece DF2 = new Defender(player2Color);     
+        private Piece BL2 = new Blitzer(player2Color);
         
         
         
@@ -33,8 +35,8 @@ public class Board {
     
 
     
-         Piece board[][] = {            {DF1,DF1,DF1,DF1,DF1,DF1,DF1,DF1,DF1,DF1,DF1},
-                                        {PW1,PW1,PW1,PW1,PW1,PW1,PW1,PW1,PW1,PW1,PW1},  
+         Piece board[][] = {            {DF1,DF1,DF1,BL1,BL1,DF1,BL1,BL1,DF1,DF1,DF1},
+                                        {PW1,PW1,BL1,PW1,PW1,PW1,PW1,PW1,BL1,PW1,PW1},  
                                         {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
                                         {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
                                         {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
@@ -42,8 +44,8 @@ public class Board {
                                         {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
                                         {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
                                         {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {PW2,PW2,PW2,PW2,PW2,PW2,PW2,PW2,PW2,PW2,PW2},
-                                        {DF2,DF2,DF2,DF2,DF2,DF2,DF2,DF2,DF2,DF2,DF2},
+                                        {PW2,PW2,PW2,BL2,BL2,PW2,BL2,BL2,PW2,PW2,PW2},
+                                        {DF2,DF2,BL2,DF2,DF2,DF2,DF2,DF2,BL2,DF2,DF2},
 
                 };
                 
@@ -53,19 +55,7 @@ public class Board {
         onPiece = false;
         setBackGroundImage();
         
-        for(int row = 0; row < board.length; row++)
-        {
-            for(int col = 0; col < board.length; col++)
-            {
-                if(board[row][col] != null)
-                {
-                    if(board[row][col].getColor() == player1Color)
-                        board[row][col].setIsPlayer1(true);
-                    else if(board[row][col].getColor() == player2Color)
-                        board[row][col].setIsPlayer1(false);
-                }
-            }
-        }
+        
     }
     
     
@@ -88,7 +78,7 @@ public class Board {
                     Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
         }
             
-            highlightPiece(g,obj);
+            highlightPiece(g);
             
         
         //Draw the piece.        
@@ -106,6 +96,21 @@ public class Board {
             }
         }
     }
+    
+    private boolean highlightPiece(Graphics2D g)
+    {
+        
+        //returns true if highlighting a piece
+        if(onPiece)
+        {
+            g.setColor(Color.gray);
+            if(TimeCount.update(4))
+                g.fillRect(Window.getX(onPieceCol*xdelta), Window.getY(onPieceRow*ydelta), xdelta, ydelta);
+            return(true);
+        }
+        else
+            return(false);
+    }
 //    public void drawPiece(Graphics2D g,Piece x,int zi, int zx)
 //    {
 //         
@@ -116,6 +121,12 @@ public class Board {
 //               
 //    }
     
+    public boolean checkReset()
+    {
+        //implement mouse click into here and make check reset window
+        return(false);
+    }
+    
     public boolean getOnPiece()
     {
         return(onPiece);
@@ -123,9 +134,17 @@ public class Board {
     
     public void setOnPiece(boolean _onPiece, int row, int col)
     {
-        onPiece = _onPiece;
-        onPieceRow = row;
-        onPieceCol = col;
+        //stores the row and column of the piece you're on when you click
+        
+        //create a test to check if you clicked on a piece you're already highlighting, the highlight stops so you can choose another piece to highlight
+        if(onPiece != _onPiece && onPieceRow != row && onPieceCol != col)
+        {
+            onPiece = _onPiece;
+            onPieceRow = row;
+            onPieceCol = col;
+        }
+        
+        
     }
     
     public void setOnPiece(boolean _onPiece)
@@ -139,20 +158,7 @@ public class Board {
         backgroundImage = Toolkit.getDefaultToolkit().getImage("./runnable/backgroundImage.gif");
     }
     
-    private boolean highlightPiece(Graphics2D g, Theckers obj)
-    {
-        //use timecount to may make the highlight flash
-        
-        //returns true if highlighting a piece
-        if(onPiece)
-        {
-            g.setColor(Color.gray);
-            g.drawImage(board[onPieceRow][onPieceCol].getPieceImage(),Window.getX(onPieceCol*xdelta), Window.getY(onPieceRow*ydelta), xdelta, ydelta, Color.gray, obj);
-            return(true);
-        }
-        else
-            return(false);
-    }
+    
     
     
 }
