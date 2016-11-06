@@ -141,6 +141,8 @@ public class Board {
     
     private boolean highlightPiece(Graphics2D g, Theckers obj)
     {
+        //use timecount to may make the highlight flash
+        
         //returns true if highlighting a piece
         if(onPiece)
         {
