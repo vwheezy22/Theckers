@@ -34,7 +34,7 @@ public class Theckers extends JFrame implements Runnable {
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 
-                
+                //highlighting a piece code
                 if (e.BUTTON1 == e.getButton() && !board.getOnPiece()) {
                     
                     
@@ -58,8 +58,8 @@ public class Theckers extends JFrame implements Runnable {
                     System.out.println(zrow); 
                     if(board.board[zrow][zcol] != null)
                     {
-                        board.setOnPiece(true);
-                       
+                        board.setOnPiece(true, zrow, zcol);
+                                               
                         a=board.board[zrow][zcol];
                         zrowTemp=zrow;
                         zcolTemp=zcol;
@@ -71,7 +71,7 @@ public class Theckers extends JFrame implements Runnable {
                     System.out.println(a); 
                     
                 }
-                
+                //moving a piece after selecting code
                 if (e.BUTTON1 == e.getButton() && board.getOnPiece()) {
                     int zcol = 0;
                     int zcolLoc = board.xdelta;
@@ -93,7 +93,7 @@ public class Theckers extends JFrame implements Runnable {
 //                    System.out.println(zrow); 
                     if(board.board[zrow][zcol] == null)
                     {
-                        board.board[zrowTemp][zcolTemp]=null;
+                        board.board[zrowTemp][zcolTemp] = null;
                         board.board[zrow][zcol] = a;
                         board.setOnPiece(false);
                        
@@ -175,6 +175,7 @@ public class Theckers extends JFrame implements Runnable {
             return;
         }
         
+        
         board.drawBoard(g, this);
 
         
@@ -232,7 +233,7 @@ public class Theckers extends JFrame implements Runnable {
         }
         
 
-        
+        TimeCount.addTime();
     }
     
 

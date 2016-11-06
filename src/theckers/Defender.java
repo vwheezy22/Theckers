@@ -55,20 +55,12 @@ public class Defender extends Piece {
     
     public void drawPiece(Graphics2D g, int row, int col)
     {
-        g.fillOval(Window.getX(col*getXDelta()),Window.getY(row*getYDelta()),getXDelta(),getYDelta());
-        
-        g.setColor(Color.black);
-        g.setFont(new Font("Broadway",Font.PLAIN,20));
-        g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2, Window.getY(row * getYDelta()) + getYDelta()/2); 
+        super.drawPiece(g, row, col);
     }
     
     // fix resource for image of defender
     public void drawPiece(Graphics2D g, int row, int col, Theckers obj)
     {
-        g.drawImage(pieceImage, Window.getX(col*getXDelta()), Window.getY(row*getYDelta()), getXDelta(), getYDelta(), obj);
-        
-        g.setColor(Color.black);
-        g.setFont(new Font("Broadway",Font.PLAIN,20));
-        g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2, Window.getY(row * getYDelta()) + getYDelta()/2); 
+        super.drawPiece(g, row, col, obj);
     }
 }

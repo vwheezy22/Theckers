@@ -11,6 +11,8 @@ public class Board {
     public final int ydelta = Window.getHeight2()/NUM_COLUMNS;
     
     private boolean onPiece;
+    private int onPieceRow;
+    private int onPieceCol;
     
     private Color player1Color = Color.pink;
     private Color player2Color = new Color(0,221,149);
@@ -85,6 +87,9 @@ public class Board {
             g.drawLine(Window.getX(zi*xdelta),Window.getY(0),
                     Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
         }
+            
+            highlightPiece(g,obj);
+            
         
         //Draw the piece.        
         for (int zi = 0;zi<NUM_ROWS;zi++)
@@ -116,14 +121,35 @@ public class Board {
         return(onPiece);
     }
     
+    public void setOnPiece(boolean _onPiece, int row, int col)
+    {
+        onPiece = _onPiece;
+        onPieceRow = row;
+        onPieceCol = col;
+    }
+    
     public void setOnPiece(boolean _onPiece)
     {
         onPiece = _onPiece;
+        
     }
     
     public void setBackGroundImage()
     {
         backgroundImage = Toolkit.getDefaultToolkit().getImage("./runnable/backgroundImage.gif");
+    }
+    
+    private boolean highlightPiece(Graphics2D g, Theckers obj)
+    {
+        //returns true if highlighting a piece
+        if(onPiece)
+        {
+            g.setColor(Color.gray);
+            g.drawImage(board[onPieceRow][onPieceCol].getPieceImage(),Window.getX(onPieceCol*xdelta), Window.getY(onPieceRow*ydelta), xdelta, ydelta, Color.gray, obj);
+            return(true);
+        }
+        else
+            return(false);
     }
     
     

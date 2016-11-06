@@ -86,10 +86,29 @@ public abstract class Piece {
         //set as default image for piece basically a try and catch
        // pieceImage = Toolkit.getDefaultToolkit().getImage("./")
     }
+    
+    protected void drawPiece(Graphics2D g, int row, int col)
+    {
+        g.fillOval(Window.getX(col*getXDelta()),Window.getY(row*getYDelta()),getXDelta(),getYDelta());
+        
+        g.setColor(Color.black);
+        g.setFont(new Font("Broadway",Font.PLAIN,20));
+        g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2 - 20, Window.getY(row * getYDelta()) + getYDelta()/2); 
+    }
+    
+    protected void drawPiece(Graphics2D g, int row, int col, Theckers obj)
+    {
+        g.drawImage(pieceImage, Window.getX(col*getXDelta()), Window.getY(row*getYDelta()), getXDelta(), getYDelta(), obj);
+        
+        g.setColor(Color.black);
+        g.setFont(new Font("Broadway",Font.PLAIN,20));
+        g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2 - 20, Window.getY(row * getYDelta()) + getYDelta()/2); 
+    }
+    
     protected abstract void setHealth();    
     protected abstract void setAttack();    
     protected abstract void setRange();    
-    protected abstract void drawPiece(Graphics2D g, int row, int col);
-    protected abstract void drawPiece(Graphics2D g, int row, int col, Theckers obj);
+    
+    
     
 }
