@@ -58,6 +58,7 @@ public class Theckers extends JFrame implements Runnable {
                     System.out.println(zrow); 
                     if(board.board[zrow][zcol] != null)
                     {
+                        //actually highlights the piece when set to true
                         board.setOnPiece(true, zrow, zcol);
                                                
                         a=board.board[zrow][zcol];
