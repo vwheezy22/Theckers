@@ -1,6 +1,7 @@
 package theckers;
 
 import java.awt.*;
+import java.util.HashMap;
 
 
 public class Board {
@@ -20,7 +21,8 @@ public class Board {
     private Image backgroundImage;
      
     public Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];     
-         
+    
+    private HashMap<String,Piece> deadPieces = new HashMap<String,Piece>();
 
                           
     public Board()
@@ -201,7 +203,12 @@ public class Board {
                 if(board[row][col] != null)
                 {
                     if(board[row][col].health <= 0)
+                    {
+                        String returnString = board[row][col].getName() + " " + row + " " + col;   //call the return string to get a dead piece by calling its type and row and col e.g. Pawn 1 5, Defender 2 11
+                        System.out.println(returnString);
+                        deadPieces.put(returnString,board[row][col]);
                         board[row][col] = null;
+                    }
                 }
             }
         }

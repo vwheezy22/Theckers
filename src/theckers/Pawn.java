@@ -21,6 +21,7 @@ public class Pawn extends Piece{
     public Pawn(Color _color)
     {
         super(_color);
+        name = "Pawn";
         setHealth();
         setAttack();
         setRange();

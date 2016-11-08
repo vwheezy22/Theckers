@@ -6,10 +6,9 @@ public abstract class Piece {
     private Color color;
     private int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
     private int ydelta = Window.getHeight2()/Board.NUM_ROWS;    
-
     
     
-    
+    protected String name;
     protected Image pieceImage;
     protected int health;       //the amount of health a piece has 
     protected int attack;       //if move into another piece of the other team, the other piece loses health
@@ -67,6 +66,11 @@ public abstract class Piece {
     public Image getPieceImage()
     {
         return(pieceImage);
+    }
+    
+    public String getName()
+    {
+        return(name);
     }
     
     public void setColor(Color _color)

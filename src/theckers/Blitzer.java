@@ -18,6 +18,7 @@ public class Blitzer extends Piece {
     public Blitzer(Color _color)
     {
         super(_color);
+        name = "Blitzer";
         setHealth();
         setAttack();
         setRange();

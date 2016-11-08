@@ -244,10 +244,10 @@ public class Theckers extends JFrame implements Runnable {
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
         
+         board = new Board();
         //method to ask if you really want to reset game, yes or no. surround all of reset method with this for loop
         //if(board.checkReset())
         {
-            board = new Board();
             board.initBoard();
             TimeCount.init();
         }
