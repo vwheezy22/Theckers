@@ -105,7 +105,34 @@ public class Theckers extends JFrame implements Runnable {
                         
                     }
                 }
-
+                
+                
+                if (e.BUTTON3 == e.getButton() && board.getOnPiece()) {
+                    int zcol = 0;
+                    int zcolLoc = board.xdelta;
+                    
+                    for (int i=0;i<Board.NUM_COLUMNS;i++)
+                    {
+                        if (zcolLoc*i < e.getX()-Window.getX(0))
+                            
+                                zcol = i;
+                    } 
+                    System.out.println(zcol);
+                    int zrow = 0;
+                    int zrowLoc = board.ydelta;
+                    
+                    for (int i=0;i<Board.NUM_ROWS;i++)
+                    {
+                        if (zrowLoc*i < e.getY()-Window.getY(0))
+                            zrow = i;
+                    } 
+                    
+                    if(board.board[zrow][zcol] != null)
+                    {
+                        board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board.board);
+                        board.setOnPiece(false);
+                    }
+                }
                 
                 
                 repaint();
@@ -221,6 +248,7 @@ public class Theckers extends JFrame implements Runnable {
         //if(board.checkReset())
         {
             board = new Board();
+            board.initBoard();
             TimeCount.init();
         }
 
@@ -239,7 +267,8 @@ public class Theckers extends JFrame implements Runnable {
 
         }
         
-
+        board.checkDeath();
+        
         TimeCount.addTime();
     }
     

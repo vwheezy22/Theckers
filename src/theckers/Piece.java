@@ -10,7 +10,6 @@ public abstract class Piece {
     
     
     
-    
     protected Image pieceImage;
     protected int health;       //the amount of health a piece has 
     protected int attack;       //if move into another piece of the other team, the other piece loses health
@@ -21,6 +20,7 @@ public abstract class Piece {
     
     Piece(Color _color)
     {
+
         color = _color;
     }
     
@@ -73,8 +73,14 @@ public abstract class Piece {
     {
         color = _color;
     }
- 
     
+    public void rangeAttackFunction(int _attackedPieceRow, int _attackedPieceCol, Piece[][] board)
+    {
+         board[_attackedPieceRow][_attackedPieceCol].health -= this.rangeAttack;
+         
+         //implement the code of range nerf
+    }
+ 
     public void setPieceImage(String _player1ImagePath, String _player2ImagePath)
     {
         //set as default image for piece basically a try and catch

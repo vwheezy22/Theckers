@@ -18,38 +18,11 @@ public class Board {
     public static Color player2Color = new Color(0,221,149);
     
     private Image backgroundImage;
-    
-    
-    //pieces
-        private Piece PW1 = new Pawn(player1Color);
-        private Piece DF1 = new Defender(player1Color);
-        private Piece BL1 = new Blitzer(player1Color);
-        
-        private Piece PW2 = new Pawn(player2Color);
-        private Piece DF2 = new Defender(player2Color);     
-        private Piece BL2 = new Blitzer(player2Color);
-        
-        
-        
-        private Piece EMP = null;
-    
+     
+    public Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];     
+         
 
-    
-         Piece board[][] = {            {DF1,DF1,DF1,BL1,BL1,DF1,BL1,BL1,DF1,DF1,DF1},
-                                        {PW1,PW1,BL1,PW1,PW1,PW1,PW1,PW1,BL1,PW1,PW1},  
-                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
-                                        {PW2,PW2,PW2,BL2,BL2,PW2,BL2,BL2,PW2,PW2,PW2},
-                                        {DF2,DF2,BL2,DF2,DF2,DF2,DF2,DF2,BL2,DF2,DF2},
-
-                };
-                
-            
+                          
     public Board()
     {
         onPiece = false;
@@ -132,6 +105,16 @@ public class Board {
         return(onPiece);
     }
     
+    public int getOnPieceRow()
+    {
+        return(onPieceRow);
+    }
+    
+    public int getOnPieceCol()
+    {
+        return(onPieceCol);
+    }
+    
     public void setOnPiece(boolean _onPiece, int row, int col)
     {
         //stores the row and column of the piece you're on when you click
@@ -155,6 +138,73 @@ public class Board {
     public void setBackGroundImage()
     {
         backgroundImage = Toolkit.getDefaultToolkit().getImage("./runnable/backgroundImage.gif");
+    }
+    
+    public void initBoard()
+    {
+        
+        //board layout
+//                                         {DF1,DF1,DF1,BL1,BL1,DF1,BL1,BL1,DF1,DF1,DF1},
+//                                        {PW1,PW1,BL1,PW1,PW1,PW1,PW1,PW1,BL1,PW1,PW1},  
+//                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
+//                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
+//                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
+//                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
+//                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
+//                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
+//                                        {EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP,EMP},
+//                                        {PW2,PW2,PW2,BL2,BL2,PW2,BL2,BL2,PW2,PW2,PW2},
+//                                        {DF2,DF2,BL2,DF2,DF2,DF2,DF2,DF2,BL2,DF2,DF2},
+        
+        //places very top row of board
+        for(int i = 0; i < NUM_COLUMNS; i++)
+        {
+            board[0][i] = new Defender(player1Color);
+            if(i == 3 || i == 4 || i == 6 || i == 7)
+                board[0][i] = new Blitzer(player1Color);
+        }
+        
+        //places row 1 of board
+        for(int i = 0; i < NUM_COLUMNS; i++)
+        {
+            board[1][i] = new Pawn(player1Color);
+            if(i == 2 || i == 8)
+                board[1][i] = new Blitzer(player1Color);
+        }
+        
+        //places very bottom row of board
+        for(int i = 0; i < NUM_COLUMNS; i++)
+        {
+            board[NUM_ROWS - 1][i] = new Defender(player2Color);
+            if(i == 2 || i == 8)
+                board[NUM_ROWS - 1][i] = new Blitzer(player2Color);
+        }
+        
+        //places one row above of bottom row
+        for(int i = 0; i < NUM_COLUMNS; i++)
+        {
+            board[NUM_ROWS - 2][i] = new Pawn(player2Color);
+            if(i == 3 || i == 4 || i == 6 || i == 7)
+                board[NUM_ROWS - 2][i] = new Blitzer(player2Color);
+        }
+        
+        
+    }
+    
+    
+    public void checkDeath()
+    {
+        for(int row = 0; row < NUM_ROWS; row ++)
+        {
+            for(int col = 0; col < NUM_COLUMNS; col ++)
+            {
+                if(board[row][col] != null)
+                {
+                    if(board[row][col].health <= 0)
+                        board[row][col] = null;
+                }
+            }
+        }
     }
     
     
