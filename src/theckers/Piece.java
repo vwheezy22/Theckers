@@ -6,6 +6,10 @@ public abstract class Piece {
     private Color color;
     private int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
     private int ydelta = Window.getHeight2()/Board.NUM_ROWS;    
+
+    
+    
+    
     
     protected Image pieceImage;
     protected int health;       //the amount of health a piece has 
@@ -69,6 +73,7 @@ public abstract class Piece {
     {
         color = _color;
     }
+ 
     
     public void setPieceImage(String _player1ImagePath, String _player2ImagePath)
     {

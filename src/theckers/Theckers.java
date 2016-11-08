@@ -44,7 +44,8 @@ public class Theckers extends JFrame implements Runnable {
                     for (int i=0;i<Board.NUM_COLUMNS;i++)
                     {
                         if (zcolLoc*i < e.getX()-Window.getX(0))
-                            zcol = i;
+                            
+                                zcol = i;
                     } 
                     System.out.println(zcol);
                     int zrow = 0;
@@ -79,7 +80,8 @@ public class Theckers extends JFrame implements Runnable {
                     
                     for (int i=0;i<Board.NUM_COLUMNS;i++)
                     {
-                        if (zcolLoc*i < e.getX() - Window.getX(0))
+                        if (zcolLoc*i < e.getX() - Window.getX(0)   
+                            && i<=zcolTemp+a.num_moves && i>=zcolTemp-a.num_moves  )
                             zcol = i;
                     } 
 //                    System.out.println(zcol);
@@ -88,7 +90,8 @@ public class Theckers extends JFrame implements Runnable {
                     
                     for (int i=0;i<Board.NUM_ROWS;i++)
                     {
-                        if (zrowLoc*i < e.getY() - Window.getY(0))
+                        if (zrowLoc*i < e.getY() - Window.getY(0)
+                                && i<=zrowTemp+a.num_moves && i>=zrowTemp-a.num_moves  )
                             zrow = i;
                     } 
 //                    System.out.println(zrow); 
@@ -260,4 +263,3 @@ public class Theckers extends JFrame implements Runnable {
 /////////////////////////////////////////////////////////////////////////
 
 }
-                            
