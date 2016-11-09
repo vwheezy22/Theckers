@@ -57,7 +57,7 @@ public class Theckers extends JFrame implements Runnable {
                             zrow = i;
                     } 
                     System.out.println(zrow); 
-                    if(board.board[zrow][zcol] != null)
+                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()==player1Turn))
                     {
                         //actually highlights the piece when set to true
                         board.setOnPiece(true, zrow, zcol);
@@ -68,6 +68,7 @@ public class Theckers extends JFrame implements Runnable {
                         
 //                        board.board[zrow][zcol]=null;
 //                        a.drawPiece(g, zrow, zcol);
+                        player1Turn=!player1Turn;
                        
                     }
                     System.out.println(a); 
@@ -90,10 +91,17 @@ public class Theckers extends JFrame implements Runnable {
                     
                     for (int i=0;i<Board.NUM_ROWS;i++)
                     {
-                        if (zrowLoc*i < e.getY() - Window.getY(0)
-                                && i<=zrowTemp+a.num_moves && i>=zrowTemp-a.num_moves  )
+                        if (zrowLoc*i < e.getY() - Window.getY(0))
                             zrow = i;
                     } 
+                     if(zrow>=zrowTemp+a.num_moves)
+                         zrow=zrowTemp+a.num_moves;
+                     if(zrow<=zrowTemp-a.num_moves)  
+                         zrow=zrowTemp-a.num_moves;
+                     if(zcol>=zcolTemp+a.num_moves)
+                         zcol=zcolTemp+a.num_moves;
+                     if(zcol<=zcolTemp-a.num_moves)  
+                         zcol=zcolTemp-a.num_moves;
 //                    System.out.println(zrow); 
                     if(board.board[zrow][zcol] == null)
                     {
@@ -127,7 +135,7 @@ public class Theckers extends JFrame implements Runnable {
                             zrow = i;
                     } 
                     
-                    if(board.board[zrow][zcol] != null)
+                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()==player1Turn))
                     {
                         board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board.board);
                         board.setOnPiece(false);
@@ -248,6 +256,7 @@ public class Theckers extends JFrame implements Runnable {
         //method to ask if you really want to reset game, yes or no. surround all of reset method with this for loop
         //if(board.checkReset())
         {
+            player1Turn=true;
             board.initBoard();
             TimeCount.init();
         }

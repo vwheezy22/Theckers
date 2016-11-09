@@ -3,9 +3,7 @@ TODO ENHANCEMENTS:
 -find appropriate images for pieces
 -create more pieces
 -fix highlight code, put movement code into class
--create movement code
 -create attacking and ranged attacking code
 -implement the main menu && the networking code
 -implement audio code
--implement enumeration code to have restrictions on planes of movement
 -prompt if you really want to reset the game on reset button (ESCAPE)

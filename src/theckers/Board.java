@@ -130,6 +130,7 @@ public class Board {
         
         
     }
+   
     
     public void setOnPiece(boolean _onPiece)
     {
@@ -162,32 +163,45 @@ public class Board {
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
             board[0][i] = new Defender(player1Color);
+            
             if(i == 3 || i == 4 || i == 6 || i == 7)
                 board[0][i] = new Blitzer(player1Color);
+            
+            board[0][i].setPlayer(true);
         }
         
         //places row 1 of board
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
             board[1][i] = new Pawn(player1Color);
+            
             if(i == 2 || i == 8)
                 board[1][i] = new Blitzer(player1Color);
+            
+            board[1][i].setPlayer(true);
         }
+        
         
         //places very bottom row of board
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
             board[NUM_ROWS - 1][i] = new Defender(player2Color);
+            
             if(i == 2 || i == 8)
                 board[NUM_ROWS - 1][i] = new Blitzer(player2Color);
+            
+            board[NUM_ROWS - 1][i].setPlayer(false);
         }
         
         //places one row above of bottom row
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
             board[NUM_ROWS - 2][i] = new Pawn(player2Color);
+          
             if(i == 3 || i == 4 || i == 6 || i == 7)
                 board[NUM_ROWS - 2][i] = new Blitzer(player2Color);
+            
+            board[NUM_ROWS - 2][i].setPlayer(false);
         }
         
         

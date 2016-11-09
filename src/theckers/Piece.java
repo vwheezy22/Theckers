@@ -15,7 +15,7 @@ public abstract class Piece {
     protected int rangeAttack;  //if right-click on a piece of the other team, the other piece loses health
     protected int range;    //subtract a certain amount from attack for each square away when attacking
     protected int num_moves;    //the amount of squares a certain piece can only move
-    
+    protected boolean player1;
     
     Piece(Color _color)
     {
@@ -72,7 +72,14 @@ public abstract class Piece {
     {
         return(name);
     }
-    
+    public void setPlayer(boolean a)
+    {
+        player1=a;
+    }
+    public boolean getPlayer()
+    {
+        return(player1);
+    }
     public void setColor(Color _color)
     {
         color = _color;
