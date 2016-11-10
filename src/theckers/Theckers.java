@@ -20,11 +20,12 @@ public class Theckers extends JFrame implements Runnable {
     Piece a = null;
 
     public static void main(String[] args) {
+        
         Theckers frame = new Theckers();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setTitle("Theckers");
+        frame.setTitle("t h e c k e r s");
         //figure icon image out
         frame.setIconImage(iconImage);
         frame.setVisible(true);

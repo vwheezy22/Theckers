@@ -165,10 +165,15 @@ public class Board {
             board[0][i] = new Defender(player1Color);
             
             if(i == 2 || i == 8)
-                board[0][i] = new Blitzer(player1Color);
+                board[0][i] = new Sniper(player1Color);
             
             if(i == 5)
                 board[0][i] = new King(player1Color);
+            
+            if(i == 1 || i == 9)
+                board[0][i] = new Healer(player1Color);
+            
+            
             
             board[0][i].setPlayer(true);
         }
@@ -178,7 +183,7 @@ public class Board {
         {
             board[1][i] = new Pawn(player1Color);
             
-            if(i == 2 || i == 8)
+            if(i == 3 || i == 4 || i == 6 || i == 7)
                 board[1][i] = new Blitzer(player1Color);
             
             board[1][i].setPlayer(true);
@@ -191,10 +196,13 @@ public class Board {
             board[NUM_ROWS - 1][i] = new Defender(player2Color);
             
             if(i == 2 || i == 8)
-                board[NUM_ROWS - 1][i] = new Blitzer(player2Color);
+                board[NUM_ROWS - 1][i] = new Sniper(player2Color);
             
             if(i == 5)
                 board[NUM_ROWS - 1][i] = new King(player2Color);
+            
+            if(i == 1 || i == 9)
+                board[NUM_ROWS - 1][i] = new Healer(player2Color);
             
             
             board[NUM_ROWS - 1][i].setPlayer(false);

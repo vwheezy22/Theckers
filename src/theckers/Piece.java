@@ -16,6 +16,7 @@ public abstract class Piece {
     protected int range;    //subtract a certain amount from attack for each square away when attacking
     protected int num_moves;    //the amount of squares a certain piece can only move
     protected boolean player1;
+    protected boolean hasSpecialAbility = false;    //automatically sets to false
     
     Piece(Color _color)
     {
