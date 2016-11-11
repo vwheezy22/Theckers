@@ -9,7 +9,7 @@ public class Theckers extends JFrame implements Runnable {
     
     Image image;
     //figure icon image out
-    static Image iconImage;
+    static Image iconImage = Toolkit.getDefaultToolkit().getImage("./runnable/vaporwave.png");
     Graphics2D g;
     boolean animateFirstTime = true;
     boolean player1Turn = true;
@@ -276,6 +276,8 @@ public class Theckers extends JFrame implements Runnable {
             reset();
 
         }
+        Audio.playBackGroundMusic();
+        
         
         board.checkDeath();
         
