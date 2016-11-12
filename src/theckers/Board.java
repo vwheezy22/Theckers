@@ -2,6 +2,7 @@ package theckers;
 
 import java.awt.*;
 import java.util.HashMap;
+import javax.swing.*;
 
 
 public class Board {
@@ -10,27 +11,24 @@ public class Board {
     public final static int NUM_COLUMNS = 11;
     public final int xdelta = Window.getWidth2()/NUM_ROWS;
     public final int ydelta = Window.getHeight2()/NUM_COLUMNS;
+    public final static Color player1Color = Color.pink;
+    public final static Color player2Color = new Color(0,221,149);
+    
+    public Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];     
+    private HashMap<String,Piece> deadPieces;
+    private boolean player1Turn;
+    
+    private static Image backgroundImage;
+    private static boolean checkReset;
+    private static boolean drawResetCheck;
     
     private boolean onPiece;
     private int onPieceRow;
     private int onPieceCol;
     
-    public static Color player1Color = Color.pink;
-    public static Color player2Color = new Color(0,221,149);
-    
-    private Image backgroundImage;
-     
-    public Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];     
-    
-    private HashMap<String,Piece> deadPieces = new HashMap<String,Piece>();
-
-                          
     public Board()
     {
-        onPiece = false;
-        setBackGroundImage();
-        
-        
+        initBoard();
     }
     
     
@@ -86,17 +84,14 @@ public class Board {
         else
             return(false);
     }
-//    public void drawPiece(Graphics2D g,Piece x,int zi, int zx)
-//    {
-//         
-//        //Draw the piece.        
-//       
-//                    g.setColor(x.getColor()); 
-//                    x.drawPiece(g, zi, zx);
-//               
-//    }
     
-    public boolean checkReset()
+    public void drawCheckReset(Graphics2D g)
+    {
+        JFrame window = new JFrame();
+        window.setVisible(true);
+    }
+    
+    public boolean checkResetConfirmed()
     {
         //implement mouse click into here and make check reset window
         return(false);
@@ -117,15 +112,24 @@ public class Board {
         return(onPieceCol);
     }
     
+    public boolean isPlayer1()
+    {
+        return(player1Turn);
+    }
+    
     public void setOnPiece(boolean _onPiece, int row, int col)
     {
         //stores the row and column of the piece you're on when you click
         
         //create a test to check if you clicked on a piece you're already highlighting, the highlight stops so you can choose another piece to highlight
-        
+        if(!onPiece && row != onPieceRow && col != onPieceCol)
+        {
             onPiece = _onPiece;
             onPieceRow = row;
             onPieceCol = col;
+            return;
+        }
+        setOnPiece(false);
         
         
         
@@ -145,6 +149,11 @@ public class Board {
     
     public void initBoard()
     {
+        player1Turn = true;
+        checkReset = false;
+        onPiece = false;
+        deadPieces = new HashMap();
+        setBackGroundImage();
         
         //board layout
 //                                         {DF1,DF1,DF1,BL1,BL1,DF1,BL1,BL1,DF1,DF1,DF1},
@@ -241,6 +250,11 @@ public class Board {
                 }
             }
         }
+    }
+    
+    public void switchPlayerTurns()
+    {
+        player1Turn = !player1Turn;
     }
     
     

@@ -12,7 +12,6 @@ public class Theckers extends JFrame implements Runnable {
     static Image iconImage = Toolkit.getDefaultToolkit().getImage("./runnable/vaporwave.png");
     Graphics2D g;
     boolean animateFirstTime = true;
-    boolean player1Turn = true;
     int zrowTemp;
     int zcolTemp;
     
@@ -58,7 +57,7 @@ public class Theckers extends JFrame implements Runnable {
                             zrow = i;
                     } 
                     System.out.println(zrow); 
-                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()==player1Turn))
+                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
                     {
                         //actually highlights the piece when set to true
                         board.setOnPiece(true, zrow, zcol);
@@ -69,8 +68,8 @@ public class Theckers extends JFrame implements Runnable {
                         
 //                        board.board[zrow][zcol]=null;
 //                        a.drawPiece(g, zrow, zcol);
-                        player1Turn=!player1Turn;
-                       
+                        board.switchPlayerTurns();
+
                     }
                     System.out.println(a); 
                     
@@ -136,7 +135,7 @@ public class Theckers extends JFrame implements Runnable {
                             zrow = i;
                     } 
                     
-                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()==player1Turn))
+                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
                     {
                         board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board.board);
                         board.setOnPiece(false);
@@ -252,15 +251,14 @@ public class Theckers extends JFrame implements Runnable {
     }
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
-        
-         board = new Board();
+        board = new Board();
         //method to ask if you really want to reset game, yes or no. surround all of reset method with this for loop
-        //if(board.checkReset())
-        {
-            player1Turn=true;
-            board.initBoard();
-            TimeCount.init();
-        }
+        
+            //if(board.checkResetConfirmed())
+            {
+                board.initBoard();
+                TimeCount.init();
+            }
 
     }
 /////////////////////////////////////////////////////////////////////////
