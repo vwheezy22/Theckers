@@ -16,8 +16,8 @@ public class Healer extends Piece{
     
     final private int HEAL_POINTS = 50;
     
-    final private String player1ImagePath = "./runnable/healer.png";
-    final private String player2ImagePath = "./runnable/healer.png";
+    final private String player1ImagePath = "./healer.png";
+    final private String player2ImagePath = "./healer.png";
     
     
     public Healer(Color _color)

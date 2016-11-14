@@ -14,8 +14,8 @@ public class Pawn extends Piece{
     final private int RANGE_ATTACK = 250;
     final private int MOVES_ALLOWED = 2;
     
-    final private String player1ImagePath = "./runnable/pawn.png";
-    final private String player2ImagePath = "./runnable/pawn.png";
+    final private String player1ImagePath = "./pawn.png";
+    final private String player2ImagePath = "./pawn.png";
     
     
     public Pawn(Color _color)

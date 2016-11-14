@@ -12,8 +12,8 @@ public class Blitzer extends Piece {
     final private int RANGE_ATTACK = 250;
     final private int MOVES_ALLOWED = 5;
     
-    final private String player1ImagePath = "./runnable/bishop.png";
-    final private String player2ImagePath = "./runnable/bishop.png";
+    final private String player1ImagePath = "./bishop.png";
+    final private String player2ImagePath = "./bishop.png";
     
     public Blitzer(Color _color)
     {

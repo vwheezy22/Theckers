@@ -9,7 +9,7 @@ public class Theckers extends JFrame implements Runnable {
     
     Image image;
     //figure icon image out
-    static Image iconImage = Toolkit.getDefaultToolkit().getImage("./runnable/vaporwave.png");
+    static Image iconImage = Toolkit.getDefaultToolkit().getImage("./vaporwave.png");
     Graphics2D g;
     boolean animateFirstTime = true;
     int zrowTemp;
@@ -19,7 +19,6 @@ public class Theckers extends JFrame implements Runnable {
     Piece a = null;
 
     public static void main(String[] args) {
-        
         Theckers frame = new Theckers();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,12 +27,13 @@ public class Theckers extends JFrame implements Runnable {
         //figure icon image out
         frame.setIconImage(iconImage);
         frame.setVisible(true);
+        Audio.playBackGroundMusic();
     }
 
     public Theckers() {
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                
+
                 //highlighting a piece code
                 if (e.BUTTON1 == e.getButton() && !board.getOnPiece()) {
                     
@@ -216,7 +216,6 @@ public class Theckers extends JFrame implements Runnable {
         
         
         board.drawBoard(g, this);
-
         
          
         
@@ -274,8 +273,7 @@ public class Theckers extends JFrame implements Runnable {
             reset();
 
         }
-        Audio.playBackGroundMusic();
-        
+        Audio.checkIfStopped();
         
         board.checkDeath();
         

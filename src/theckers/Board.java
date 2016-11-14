@@ -144,7 +144,7 @@ public class Board {
     
     public void setBackGroundImage()
     {
-        backgroundImage = Toolkit.getDefaultToolkit().getImage("./runnable/backgroundImage.gif");
+        backgroundImage = Toolkit.getDefaultToolkit().getImage("./backgroundImage.gif");
     }
     
     public void initBoard()
