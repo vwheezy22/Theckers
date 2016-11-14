@@ -6,6 +6,7 @@ public class Audio {
     static Sound backgroundSound = null;
     static Sound windowsWinSound = null;
     static Sound movePieceSound = null;
+    static Sound crashPieceSound = null;
     
     public static void playBackGroundMusic()
     {
@@ -41,6 +42,13 @@ public class Audio {
         if (movePieceSound != null)
                 movePieceSound.stopPlaying = true;
         movePieceSound = new Sound("./.wav");
+    }
+    
+    public static void playCrashMusic()
+    {
+        if (crashPieceSound != null)
+                crashPieceSound.stopPlaying = true;
+        crashPieceSound = new Sound("./crash.wav");
     }
     
 }

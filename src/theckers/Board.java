@@ -246,6 +246,7 @@ public class Board {
                         System.out.println(returnString);
                         deadPieces.put(returnString,board[row][col]);
                         board[row][col] = null;
+                        Audio.playCrashMusic();
                     }
                 }
             }
