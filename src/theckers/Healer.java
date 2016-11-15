@@ -57,6 +57,14 @@ public class Healer extends Piece{
         num_moves = MOVES_ALLOWED;
     }
     
+    public void healTeamMatesFunction(int _attackedPieceRow, int _attackedPieceCol, Board board)
+    {
+        if(board.board[_attackedPieceRow][_attackedPieceCol].getPlayer() != board.isPlayer1())
+         board.board[_attackedPieceRow][_attackedPieceCol].health += this.HEAL_POINTS;
+         
+         //implement the code of range nerf
+    }
+    
     public void setPieceImage()
     {
         super.setPieceImage(player1ImagePath, player2ImagePath);

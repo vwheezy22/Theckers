@@ -13,7 +13,7 @@ public class Blitzer extends Piece {
     final private int MOVES_ALLOWED = 5;
     
     final private String player1ImagePath = "./bishop.png";
-    final private String player2ImagePath = "./bishop.png";
+    final private String player2ImagePath = "./bishop2.png";
     
     public Blitzer(Color _color)
     {

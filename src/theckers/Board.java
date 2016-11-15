@@ -122,14 +122,14 @@ public class Board {
         //stores the row and column of the piece you're on when you click
         
         //create a test to check if you clicked on a piece you're already highlighting, the highlight stops so you can choose another piece to highlight
-        if(!onPiece && row != onPieceRow && col != onPieceCol)
+        //if(!onPiece && row != onPieceRow && col != onPieceCol)
         {
             onPiece = _onPiece;
             onPieceRow = row;
             onPieceCol = col;
             return;
         }
-        setOnPiece(false);
+        //setOnPiece(false);
         
         
         

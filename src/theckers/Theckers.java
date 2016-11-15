@@ -103,15 +103,25 @@ public class Theckers extends JFrame implements Runnable {
                      if(zcol<=zcolTemp-a.num_moves)  
                          zcol=zcolTemp-a.num_moves;
 //                    System.out.println(zrow); 
+                    //moves a piece highlighted to an open spot
                     if(board.board[zrow][zcol] == null)
                     {
                         board.board[zrowTemp][zcolTemp] = null;
                         board.board[zrow][zcol] = a;
-                        board.setOnPiece(false);
-                       
-                        
-                        
+                        board.setOnPiece(false);    
                     }
+                    //moves a piece to the spot of an enemy you just killed
+                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
+                    {
+                        board.board[board.getOnPieceRow()][board.getOnPieceCol()].attackFunction(zrow, zcol, board);
+                        board.setOnPiece(false);
+                    }
+                    
+//                    //unhighlights a piece 
+//                    if(board.board[zrow][zcol] != null && board.board[zrow][zcol] == board.board[board.getOnPieceRow()][board.getOnPieceCol()])
+//                    {
+//                        board.setOnPiece(false);
+//                    }
                 }
                 
                 
@@ -137,7 +147,14 @@ public class Theckers extends JFrame implements Runnable {
                     
                     if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
                     {
-                        board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board.board);
+                        board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board);
+                        board.setOnPiece(false);
+                    }
+                    
+                    if(board.board[zrow][zcol] != null)
+                    {
+                        Healer healPiece = (Healer) board.board[board.getOnPieceRow()][board.getOnPieceCol()];
+                        healPiece.healTeamMatesFunction(zrow, zcol, board);
                         board.setOnPiece(false);
                     }
                 }

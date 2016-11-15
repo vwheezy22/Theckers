@@ -86,11 +86,27 @@ public abstract class Piece {
         color = _color;
     }
     
-    public void rangeAttackFunction(int _attackedPieceRow, int _attackedPieceCol, Piece[][] board)
+    public void rangeAttackFunction(int _attackedPieceRow, int _attackedPieceCol, Board board)
     {
-         board[_attackedPieceRow][_attackedPieceCol].health -= this.rangeAttack;
+         board.board[_attackedPieceRow][_attackedPieceCol].health -= this.rangeAttack;
          
          //implement the code of range nerf
+    }
+    
+    public void attackFunction(int _attackedPieceRow, int _attackedPieceCol, Board board)
+    {
+        if(this.attack >= board.board[_attackedPieceRow][_attackedPieceCol].health)
+        {
+            board.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
+            Audio.playCrashMusic();
+            Piece temp = this;
+            board.board[board.getOnPieceRow()][board.getOnPieceCol()] = null;
+            board.board[_attackedPieceRow][_attackedPieceCol] = temp;
+        }
+        else
+            //fail safe to fix it switching turns if there was a move and someone was not killed
+            board.switchPlayerTurns();
+         
     }
  
     public void setPieceImage(String _player1ImagePath, String _player2ImagePath)
