@@ -7,10 +7,13 @@ public abstract class Piece {
     private int xdelta = Window.getWidth2()/Board.NUM_COLUMNS;
     private int ydelta = Window.getHeight2()/Board.NUM_ROWS;    
     
+    private int row;
+    private int col;
+    
     
     protected String name;
     protected Image pieceImage;
-    protected int health;       //the amount of health a piece has 
+    public int health;       //the amount of health a piece has 
     protected int attack;       //if move into another piece of the other team, the other piece loses health
     protected int rangeAttack;  //if right-click on a piece of the other team, the other piece loses health
     protected int range;    //subtract a certain amount from attack for each square away when attacking
@@ -18,9 +21,10 @@ public abstract class Piece {
     protected boolean player1;
     protected boolean hasSpecialAbility = false;    //automatically sets to false
     
-    Piece(Color _color)
+    Piece(Color _color, int _row, int _col)
     {
-
+        row = _row;
+        col = _col;
         color = _color;
     }
     
@@ -93,19 +97,24 @@ public abstract class Piece {
          //implement the code of range nerf
     }
     
-    public void attackFunction(int _attackedPieceRow, int _attackedPieceCol, Board board)
+    public void attackFunction(int _attackedPieceRow, int _attackedPieceCol, Board theBoard)
     {
-        if(this.attack >= board.board[_attackedPieceRow][_attackedPieceCol].health)
+        
+        if(this.attack >= theBoard.board[_attackedPieceRow][_attackedPieceCol].health)
         {
-            board.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
+            theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
             Audio.playCrashMusic();
             Piece temp = this;
-            board.board[board.getOnPieceRow()][board.getOnPieceCol()] = null;
-            board.board[_attackedPieceRow][_attackedPieceCol] = temp;
+            theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()] = null;
+            theBoard.board[_attackedPieceRow][_attackedPieceCol] = temp;
         }
-        else
+        if(this.attack < theBoard.board[_attackedPieceRow][_attackedPieceCol].health)
+        {
             //fail safe to fix it switching turns if there was a move and someone was not killed
-            board.switchPlayerTurns();
+            Audio.playCrashMusic();
+            theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
+            theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()] = null;
+        }
          
     }
  

@@ -18,9 +18,9 @@ public class Pawn extends Piece{
     final private String player2ImagePath = "./pawn.png";
     
     
-    public Pawn(Color _color)
+    public Pawn(Color _color, int _row, int _col)
     {
-        super(_color);
+        super(_color, _row, _col);
         name = "Pawn";
         setHealth();
         setAttack();

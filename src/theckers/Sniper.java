@@ -19,9 +19,9 @@ public class Sniper extends Piece{
     final private String player2ImagePath = "./sniper.png";
     
     
-    public Sniper(Color _color)
+    public Sniper(Color _color, int _row, int _col)
     {
-        super(_color);
+        super(_color, _row, _col);
         name = "Sniper";
         setHealth();
         setAttack();

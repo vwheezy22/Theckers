@@ -15,9 +15,9 @@ public class Blitzer extends Piece {
     final private String player1ImagePath = "./bishop.png";
     final private String player2ImagePath = "./bishop2.png";
     
-    public Blitzer(Color _color)
+    public Blitzer(Color _color, int _row, int _col)
     {
-        super(_color);
+        super(_color, _row, _col);
         name = "Blitzer";
         setHealth();
         setAttack();

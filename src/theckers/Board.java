@@ -171,16 +171,16 @@ public class Board {
         //places very top row of board
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
-            board[0][i] = new Defender(player1Color);
+            board[0][i] = new Defender(player1Color, 0, i);
             
             if(i == 2 || i == 8)
-                board[0][i] = new Sniper(player1Color);
+                board[0][i] = new Sniper(player1Color, 0, i);
             
             if(i == 5)
-                board[0][i] = new King(player1Color);
+                board[0][i] = new King(player1Color, 0, i);
             
             if(i == 1 || i == 9)
-                board[0][i] = new Healer(player1Color);
+                board[0][i] = new Healer(player1Color, 0, i);
             
             
             
@@ -190,10 +190,10 @@ public class Board {
         //places row 1 of board
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
-            board[1][i] = new Pawn(player1Color);
+            board[1][i] = new Pawn(player1Color, 1, i);
             
             if(i == 3 || i == 4 || i == 6 || i == 7)
-                board[1][i] = new Blitzer(player1Color);
+                board[1][i] = new Blitzer(player1Color, 1, i);
             
             board[1][i].setPlayer(true);
         }
@@ -202,16 +202,16 @@ public class Board {
         //places very bottom row of board
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
-            board[NUM_ROWS - 1][i] = new Defender(player2Color);
+            board[NUM_ROWS - 1][i] = new Defender(player2Color, NUM_ROWS - 1, i);
             
             if(i == 2 || i == 8)
-                board[NUM_ROWS - 1][i] = new Sniper(player2Color);
+                board[NUM_ROWS - 1][i] = new Sniper(player2Color, NUM_ROWS - 1, i);
             
             if(i == 5)
-                board[NUM_ROWS - 1][i] = new King(player2Color);
+                board[NUM_ROWS - 1][i] = new King(player2Color, NUM_ROWS - 1, i );
             
             if(i == 1 || i == 9)
-                board[NUM_ROWS - 1][i] = new Healer(player2Color);
+                board[NUM_ROWS - 1][i] = new Healer(player2Color, NUM_ROWS - 1, i);
             
             
             board[NUM_ROWS - 1][i].setPlayer(false);
@@ -220,10 +220,10 @@ public class Board {
         //places one row above of bottom row
         for(int i = 0; i < NUM_COLUMNS; i++)
         {
-            board[NUM_ROWS - 2][i] = new Pawn(player2Color);
+            board[NUM_ROWS - 2][i] = new Pawn(player2Color, NUM_ROWS - 2, i);
           
             if(i == 3 || i == 4 || i == 6 || i == 7)
-                board[NUM_ROWS - 2][i] = new Blitzer(player2Color);
+                board[NUM_ROWS - 2][i] = new Blitzer(player2Color, NUM_ROWS - 2, i );
             
             board[NUM_ROWS - 2][i].setPlayer(false);
         }

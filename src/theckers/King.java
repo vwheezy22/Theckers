@@ -18,9 +18,9 @@ public class King extends Piece{
     final private String player2ImagePath = "./king.png";
     
     
-    public King(Color _color)
+    public King(Color _color, int _row, int _col)
     {
-        super(_color);
+        super(_color, _row, _col);
         name = "King";
         setHealth();
         setAttack();

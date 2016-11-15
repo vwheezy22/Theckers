@@ -115,6 +115,8 @@ public class Theckers extends JFrame implements Runnable {
                     {
                         board.board[board.getOnPieceRow()][board.getOnPieceCol()].attackFunction(zrow, zcol, board);
                         board.setOnPiece(false);
+                        
+                        
                     }
                     
 //                    //unhighlights a piece 

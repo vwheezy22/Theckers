@@ -20,9 +20,9 @@ public class Healer extends Piece{
     final private String player2ImagePath = "./healer.png";
     
     
-    public Healer(Color _color)
+    public Healer(Color _color, int _row, int _col)
     {
-        super(_color);
+        super(_color, _row, _col);
         name = "Healer";
         setHealth();
         setAttack();

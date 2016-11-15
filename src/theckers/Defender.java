@@ -15,9 +15,9 @@ public class Defender extends Piece {
     final private String player1ImagePath = "./rook.png"; 
     final private String player2ImagePath = "./rook.png"; 
     
-    public Defender(Color _color)
+    public Defender(Color _color, int _row, int _col)
     {
-        super(_color);
+        super(_color, _row, _col);
         name = "Defender";
         setHealth();
         setAttack();
