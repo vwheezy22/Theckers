@@ -144,14 +144,21 @@ public class Theckers extends JFrame implements Runnable {
                         if (zrowLoc*i < e.getY()-Window.getY(0))
                             zrow = i;
                     } 
-                    
+                    if(zrow>=zrowTemp+a.range)
+                         zrow=zrowTemp+a.range;
+                     if(zrow<=zrowTemp-a.range)  
+                         zrow=zrowTemp-a.range;
+                     if(zcol>=zcolTemp+a.range)
+                         zcol=zcolTemp+a.range;
+                     if(zcol<=zcolTemp-a.range)  
+                         zcol=zcolTemp-a.range;
                     if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
                     {
                         board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board);
                         board.setOnPiece(false);
                     }
                     
-                    if(board.board[zrow][zcol] != null)
+                    if(board.board[zrow][zcol] != null && board.board[board.getOnPieceRow()][board.getOnPieceCol()] instanceof Healer )
                     {
                         Healer healPiece = (Healer) board.board[board.getOnPieceRow()][board.getOnPieceCol()];
                         healPiece.healTeamMatesFunction(zrow, zcol, board);

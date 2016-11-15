@@ -8,7 +8,7 @@ public class Defender extends Piece {
     
     final private int HEALTH_LVL = 1000;
     final private int ATTACK_LVL = 500;
-    final private int RANGE_NERF = 25;
+    final private int RANGE_NERF = 1;
     final private int RANGE_ATTACK = 250;
     final private int MOVES_ALLOWED = 3;
     

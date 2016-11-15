@@ -10,7 +10,7 @@ import java.awt.*;
 public class King extends Piece{
     final private int HEALTH_LVL = 1500;
     final private int ATTACK_LVL = 250;
-    final private int RANGE_NERF = 25;
+    final private int RANGE_NERF = 3;
     final private int RANGE_ATTACK = 250;
     final private int MOVES_ALLOWED = 0;
     

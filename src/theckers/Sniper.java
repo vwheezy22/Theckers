@@ -10,7 +10,7 @@ import java.awt.*;
 public class Sniper extends Piece{
     final private int HEALTH_LVL = 500;
     final private int ATTACK_LVL = 250;
-    final private int RANGE_NERF = 50;
+    final private int RANGE_NERF = 5;
     final private int RANGE_ATTACK = 250;
     final private int MOVES_ALLOWED = 2;
     

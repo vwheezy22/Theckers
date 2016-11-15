@@ -8,7 +8,7 @@ public class Blitzer extends Piece {
     
     final private int HEALTH_LVL = 250;
     final private int ATTACK_LVL = 1000;
-    final private int RANGE_NERF = 50;
+    final private int RANGE_NERF = 2;
     final private int RANGE_ATTACK = 250;
     final private int MOVES_ALLOWED = 5;
     
