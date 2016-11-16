@@ -81,8 +81,7 @@ public class Theckers extends JFrame implements Runnable {
                     
                     for (int i=0;i<Board.NUM_COLUMNS;i++)
                     {
-                        if (zcolLoc*i < e.getX() - Window.getX(0)   
-                            && i<=zcolTemp+a.getNumMoves() && i>=zcolTemp-a.getNumMoves()  )
+                        if (zcolLoc*i < e.getX() - Window.getX(0))
                             zcol = i;
                     } 
 //                    System.out.println(zcol);
@@ -113,7 +112,8 @@ public class Theckers extends JFrame implements Runnable {
                     
                     
                     board.board[board.getOnPieceRow()][board.getOnPieceCol()].startHighlightPieceChange(zrow, zcol, board);
-                        
+                        System.out.println(zrow);
+                        System.out.println(zcol);
                         
                     
                     

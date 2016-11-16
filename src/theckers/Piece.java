@@ -174,15 +174,20 @@ public abstract class Piece {
     
     public void startHighlightPieceChange(int _nextHighlightRow, int _nextHighlightCol, Board theBoard)
     {
-        if(theBoard.getOnPiece() && (theBoard.board[_nextHighlightRow][_nextHighlightCol].getPlayer() != theBoard.isPlayer1()) && theBoard.board[_nextHighlightRow][_nextHighlightCol] != null)
+        if(theBoard.board[_nextHighlightRow][_nextHighlightCol] != null)
         {
-            if(enterFirstTime)
+            if(theBoard.getOnPiece() && (theBoard.board[_nextHighlightRow][_nextHighlightCol].getPlayer() != theBoard.isPlayer1()))
             {
-                setEnterFirstTime(false);
-            }
-            else
-            {
-                theBoard.setOnPiece(true, _nextHighlightRow, _nextHighlightCol);
+                System.out.println("row " + _nextHighlightRow);
+                System.out.println("col " + _nextHighlightCol);
+                if(enterFirstTime)
+                {
+                    setEnterFirstTime(false);
+                }
+                else
+                {
+                    theBoard.setOnPiece(true, _nextHighlightRow, _nextHighlightCol);
+                }
             }
         }
     }

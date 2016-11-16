@@ -128,7 +128,6 @@ public class Board {
             onPiece = _onPiece;
             onPieceRow = row;
             onPieceCol = col;
-            return;
         }
         //setOnPiece(false);
         

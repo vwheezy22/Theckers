@@ -8,6 +8,7 @@ public class Audio {
     static Sound movePieceSound = null;
     static Sound crashPieceSound = null;
     static Sound sniperSound = null;
+    static Sound yeahBoySound = null;
     
     public static void playBackGroundMusic()
     {
@@ -57,6 +58,13 @@ public class Audio {
         if (sniperSound != null)
                 sniperSound.stopPlaying = true;
         sniperSound = new Sound("./sniperSound.wav");
+    }
+    
+    public static void playYeahBoy()
+    {
+        if (yeahBoySound != null)
+                yeahBoySound.stopPlaying = true;
+        yeahBoySound = new Sound("./longestYeahBoy.wav");
     }
     
 }
