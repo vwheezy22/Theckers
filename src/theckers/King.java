@@ -21,7 +21,7 @@ public class King extends Piece{
     public King(Color _color, int _row, int _col)
     {
         super(_color, _row, _col);
-        name = "King";
+        super.setName("King");
         setHealth();
         setAttack();
         setRange();
@@ -32,43 +32,32 @@ public class King extends Piece{
     
     public void setHealth()
     {
-        health = HEALTH_LVL;
+        super.setHealth(HEALTH_LVL);
     }
     
     public void setAttack()
     {
-        attack = ATTACK_LVL;
+        super.setAttack(ATTACK_LVL);
     }
     
     public void setRange()
     {
-        range = RANGE_NERF;
+        super.setRange(RANGE_NERF);
     }
     
     public void setRangeAttack()
     {
-        rangeAttack = RANGE_ATTACK;
+        super.setRangeAttack(RANGE_ATTACK);
     }
     
     public void setMovesAllowed()
     {
-        num_moves = MOVES_ALLOWED;
+        super.setNumMoves(MOVES_ALLOWED);
     }
     
     public void setPieceImage()
     {
         super.setPieceImage(player1ImagePath, player2ImagePath);
     }
-    
-    //default drawing of piece without image
-    public void drawPiece(Graphics2D g, int row, int col)
-    {
-        super.drawPiece(g, row, col);
-    }
-    
-    public void drawPiece(Graphics2D g, int row, int col, Theckers obj)
-    {
-        super.drawPiece(g, row, col, obj);
-    }
-    
+        
 }

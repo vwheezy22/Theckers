@@ -62,7 +62,7 @@ public class Board {
                 if (board[zi][zx] != null)
                 {
                     g.setColor(board[zi][zx].getColor()); 
-                    board[zi][zx].drawPiece(g, zi, zx, obj);
+                    board[zi][zx].drawPiece(g, obj);
                     //draw piece - no image
                     //board[zi][zx].drawPiece(g, zi, zx);
                 }
@@ -240,7 +240,7 @@ public class Board {
             {
                 if(board[row][col] != null)
                 {
-                    if(board[row][col].health <= 0)
+                    if(board[row][col].getHealth() <= 0)
                     {
                         String returnString = board[row][col].getName() + " " + row + " " + col;   //call the return string to get a dead piece by calling its type and row and col e.g. Pawn 1 5, Defender 2 11
                         System.out.println(returnString);

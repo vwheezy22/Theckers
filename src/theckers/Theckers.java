@@ -82,7 +82,7 @@ public class Theckers extends JFrame implements Runnable {
                     for (int i=0;i<Board.NUM_COLUMNS;i++)
                     {
                         if (zcolLoc*i < e.getX() - Window.getX(0)   
-                            && i<=zcolTemp+a.num_moves && i>=zcolTemp-a.num_moves  )
+                            && i<=zcolTemp+a.getNumMoves() && i>=zcolTemp-a.getNumMoves()  )
                             zcol = i;
                     } 
 //                    System.out.println(zcol);
@@ -94,30 +94,25 @@ public class Theckers extends JFrame implements Runnable {
                         if (zrowLoc*i < e.getY() - Window.getY(0))
                             zrow = i;
                     } 
-                     if(zrow>=zrowTemp+a.num_moves)
-                         zrow=zrowTemp+a.num_moves;
-                     if(zrow<=zrowTemp-a.num_moves)  
-                         zrow=zrowTemp-a.num_moves;
-                     if(zcol>=zcolTemp+a.num_moves)
-                         zcol=zcolTemp+a.num_moves;
-                     if(zcol<=zcolTemp-a.num_moves)  
-                         zcol=zcolTemp-a.num_moves;
+//                     if(zrow>=zrowTemp+a.getNumMoves())
+//                         zrow=zrowTemp+a.getNumMoves();
+//                     if(zrow<=zrowTemp-a.getNumMoves())  
+//                         zrow=zrowTemp-a.getNumMoves();
+//                     if(zcol>=zcolTemp+a.getNumMoves())
+//                         zcol=zcolTemp+a.getNumMoves();
+//                     if(zcol<=zcolTemp-a.getNumMoves())  
+//                         zcol=zcolTemp-a.getNumMoves();
 //                    System.out.println(zrow); 
+
                     //moves a piece highlighted to an open spot
-                    if(board.board[zrow][zcol] == null)
-                    {
-                        board.board[zrowTemp][zcolTemp] = null;
-                        board.board[zrow][zcol] = a;
-                        board.setOnPiece(false);    
-                    }
+                    board.board[board.getOnPieceRow()][board.getOnPieceCol()].moveFunction(zrow, zcol, board);
+                    
                     //moves a piece to the spot of an enemy you just killed
-                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
-                    {
-                        board.board[board.getOnPieceRow()][board.getOnPieceCol()].attackFunction(zrow, zcol, board);
-                        board.setOnPiece(false);
+                    
+                    board.board[board.getOnPieceRow()][board.getOnPieceCol()].attackFunction(zrow, zcol, board);
                         
                         
-                    }
+                    
                     
 //                    //unhighlights a piece 
 //                    if(board.board[zrow][zcol] != null && board.board[zrow][zcol] == board.board[board.getOnPieceRow()][board.getOnPieceCol()])
@@ -146,14 +141,14 @@ public class Theckers extends JFrame implements Runnable {
                         if (zrowLoc*i < e.getY()-Window.getY(0))
                             zrow = i;
                     } 
-                    if(zrow>=zrowTemp+a.range)
-                         zrow=zrowTemp+a.range;
-                     if(zrow<=zrowTemp-a.range)  
-                         zrow=zrowTemp-a.range;
-                     if(zcol>=zcolTemp+a.range)
-                         zcol=zcolTemp+a.range;
-                     if(zcol<=zcolTemp-a.range)  
-                         zcol=zcolTemp-a.range;
+                    if(zrow>=zrowTemp+a.getRange())
+                         zrow=zrowTemp+a.getRange();
+                     if(zrow<=zrowTemp-a.getRange())  
+                         zrow=zrowTemp-a.getRange();
+                     if(zcol>=zcolTemp+a.getRange())
+                         zcol=zcolTemp+a.getRange();
+                     if(zcol<=zcolTemp-a.getRange())  
+                         zcol=zcolTemp-a.getRange();
                     if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
                     {
                         board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board);
