@@ -7,6 +7,7 @@ public class Audio {
     static Sound windowsWinSound = null;
     static Sound movePieceSound = null;
     static Sound crashPieceSound = null;
+    static Sound sniperSound = null;
     
     public static void playBackGroundMusic()
     {
@@ -49,6 +50,13 @@ public class Audio {
         if (crashPieceSound != null)
                 crashPieceSound.stopPlaying = true;
         crashPieceSound = new Sound("./crash.wav");
+    }
+    
+    public static void playSniperSound()
+    {
+        if (sniperSound != null)
+                sniperSound.stopPlaying = true;
+        sniperSound = new Sound("./sniperSound.wav");
     }
     
 }

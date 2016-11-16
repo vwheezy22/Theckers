@@ -16,6 +16,7 @@ public abstract class Piece {
     private int range;    //subtract a certain amount from attack for each square away when attacking
     private int num_moves;    //the amount of squares a certain piece can only move
     private boolean player1;
+    private static boolean enterFirstTime = true;
     //private boolean hasSpecialAbility;    //automatically sets to false
     
     Piece(Color _color, int _row, int _col)
@@ -156,8 +157,35 @@ public abstract class Piece {
         
     }
     
+    private static void setEnterFirstTime(boolean _enterFirstTime)
+    {
+        enterFirstTime = _enterFirstTime;
+    }
+    
     //////////////////////////////////////////////
     //game functions
+    
+    public void highlightPieceChange(Graphics2D g, int _nextHighlightRow, int _nextHighlightCol, Board theBoard)
+    {
+        {
+            theBoard.setOnPiece(true, _nextHighlightRow, _nextHighlightCol);
+        }
+    }
+    
+    public void startHighlightPieceChange(int _nextHighlightRow, int _nextHighlightCol, Board theBoard)
+    {
+        if(theBoard.getOnPiece() && (theBoard.board[_nextHighlightRow][_nextHighlightCol].getPlayer() != theBoard.isPlayer1()) && theBoard.board[_nextHighlightRow][_nextHighlightCol] != null)
+        {
+            if(enterFirstTime)
+            {
+                setEnterFirstTime(false);
+            }
+            else
+            {
+                theBoard.setOnPiece(true, _nextHighlightRow, _nextHighlightCol);
+            }
+        }
+    }
     
     public void rangeAttackFunction(int _attackedPieceRow, int _attackedPieceCol, Board theBoard)
     {
@@ -172,7 +200,7 @@ public abstract class Piece {
                 {
                     theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.rangeAttack;
                     theBoard.setOnPiece(false);
-                    //Audio.PlaySniperSound();
+                    Audio.playSniperSound();
                 }
             }
         }
@@ -182,21 +210,26 @@ public abstract class Piece {
     {
         if(theBoard.board[_attackedPieceRow][_attackedPieceCol] != null && (theBoard.board[_attackedPieceRow][_attackedPieceCol].getPlayer()== theBoard.isPlayer1()))
         {
-            if(this.attack >= theBoard.board[_attackedPieceRow][_attackedPieceCol].health)
+            if(_attackedPieceRow <= this.row + this.num_moves && _attackedPieceRow >= this.row - this.num_moves)
             {
-                theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
-                theBoard.board[_attackedPieceRow][_attackedPieceCol] = theBoard.board[this.row][this.col];    //sets the data of the piece to that next spot
-                this.row = _attackedPieceRow;    //sets both the row and col for drawing to the next spot
-                this.col = _attackedPieceCol;
+                if(_attackedPieceCol <= this.col + this.num_moves && _attackedPieceCol >= this.col - this.num_moves)
+                {
+                    theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
+
+                    if(this.attack >= theBoard.board[_attackedPieceRow][_attackedPieceCol].health)
+                    {
+                        theBoard.board[_attackedPieceRow][_attackedPieceCol] = theBoard.board[this.row][this.col];    //sets the data of the piece to that next spot
+                        this.row = _attackedPieceRow;    //sets both the row and col for drawing to the next spot
+                        this.col = _attackedPieceCol;
+                    }
+                    else if(this.attack < theBoard.board[_attackedPieceRow][_attackedPieceCol].health)
+                    {
+                        theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()].health = 0;
+                    }
+
+                    theBoard.setOnPiece(false);
+                }
             }
-            else if(this.attack < theBoard.board[_attackedPieceRow][_attackedPieceCol].health)
-            {
-                //fail safe to fix it switching turns if there was a move and someone was not killed
-                theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
-                theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()].health = 0;
-            }
-            
-            theBoard.setOnPiece(false);
         }
          
     }
@@ -227,7 +260,7 @@ public abstract class Piece {
     ////////////////////////////////////////
     //drawing functions
     
-    protected void drawPiece(Graphics2D g)
+    public void drawPiece(Graphics2D g)
     {
         g.fillOval(Window.getX(col*getXDelta()),Window.getY(row*getYDelta()),getXDelta(),getYDelta());
         
@@ -236,14 +269,14 @@ public abstract class Piece {
         g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2 - 20, Window.getY(row * getYDelta()) + getYDelta()/2); 
     }
     
-    protected void drawPiece(Graphics2D g, Theckers obj)
+    public void drawPiece(Graphics2D g, Theckers obj)
     {
         if(pieceImage != null)
             g.drawImage(pieceImage, Window.getX(col*getXDelta()), Window.getY(row*getYDelta()), getXDelta(), getYDelta(), obj);
         else
             drawPiece(g);
         
-        g.setColor(Color.black);
+        g.setColor(Color.pink);
         g.setFont(new Font("Broadway",Font.PLAIN,20));
         g.drawString(String.valueOf(getHealth()), Window.getX(col* getXDelta()) + getXDelta()/2 - 20, Window.getY(row * getYDelta()) + getYDelta()/2); 
     }

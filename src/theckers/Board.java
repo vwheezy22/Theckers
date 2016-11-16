@@ -53,6 +53,7 @@ public class Board {
             
             highlightPiece(g);
             
+            
         
         //Draw the piece.        
         for (int zi = 0;zi<NUM_ROWS;zi++)

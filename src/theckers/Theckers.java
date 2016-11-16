@@ -110,6 +110,9 @@ public class Theckers extends JFrame implements Runnable {
                     //moves a piece to the spot of an enemy you just killed
                     
                     board.board[board.getOnPieceRow()][board.getOnPieceCol()].attackFunction(zrow, zcol, board);
+                    
+                    
+                    board.board[board.getOnPieceRow()][board.getOnPieceCol()].startHighlightPieceChange(zrow, zcol, board);
                         
                         
                     
