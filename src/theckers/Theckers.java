@@ -141,18 +141,18 @@ public class Theckers extends JFrame implements Runnable {
                         if (zrowLoc*i < e.getY()-Window.getY(0))
                             zrow = i;
                     } 
-                    if(zrow>=zrowTemp+a.getRange())
-                         zrow=zrowTemp+a.getRange();
-                     if(zrow<=zrowTemp-a.getRange())  
-                         zrow=zrowTemp-a.getRange();
-                     if(zcol>=zcolTemp+a.getRange())
-                         zcol=zcolTemp+a.getRange();
-                     if(zcol<=zcolTemp-a.getRange())  
-                         zcol=zcolTemp-a.getRange();
-                    if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
+//                    if(zrow>=zrowTemp+a.getRange())
+//                         zrow=zrowTemp+a.getRange();
+//                     if(zrow<=zrowTemp-a.getRange())  
+//                         zrow=zrowTemp-a.getRange();
+//                     if(zcol>=zcolTemp+a.getRange())
+//                         zcol=zcolTemp+a.getRange();
+//                     if(zcol<=zcolTemp-a.getRange())  
+//                         zcol=zcolTemp-a.getRange();
+                    //if(board.board[zrow][zcol] != null && (board.board[zrow][zcol].getPlayer()== board.isPlayer1()))
                     {
                         board.board[board.getOnPieceRow()][board.getOnPieceCol()].rangeAttackFunction(zrow, zcol, board);
-                        board.setOnPiece(false);
+                       // board.setOnPiece(false);
                     }
                     
                     if(board.board[zrow][zcol] != null && board.board[board.getOnPieceRow()][board.getOnPieceCol()] instanceof Healer )

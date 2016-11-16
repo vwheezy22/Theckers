@@ -188,7 +188,6 @@ public abstract class Piece {
                 theBoard.board[_attackedPieceRow][_attackedPieceCol] = theBoard.board[this.row][this.col];    //sets the data of the piece to that next spot
                 this.row = _attackedPieceRow;    //sets both the row and col for drawing to the next spot
                 this.col = _attackedPieceCol;
-                theBoard.setOnPiece(false);     //sets the highlight off
             }
             else if(this.attack < theBoard.board[_attackedPieceRow][_attackedPieceCol].health)
             {
@@ -196,6 +195,8 @@ public abstract class Piece {
                 theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.attack;
                 theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()].health = 0;
             }
+            
+            theBoard.setOnPiece(false);
         }
          
     }
