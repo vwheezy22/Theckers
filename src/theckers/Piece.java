@@ -231,7 +231,7 @@ public abstract class Piece {
                     {
                         theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()].health = 0;
                     }
-                    Audio.playCrashMusic();
+                    //Audio.playCrashMusic();
                     theBoard.setOnPiece(false);
                 }
             }

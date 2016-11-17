@@ -13,7 +13,7 @@ public class Defender extends Piece {
     final private int MOVES_ALLOWED = 3;
     
     final private String player1ImagePath = "./rook.png"; 
-    final private String player2ImagePath = "./rook.png"; 
+    final private String player2ImagePath = "./rook2.png"; 
     
     public Defender(Color _color, int _row, int _col)
     {
