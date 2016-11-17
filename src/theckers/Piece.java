@@ -251,6 +251,7 @@ public abstract class Piece {
                 if(_nextSpotCol <= this.col + this.num_moves && _nextSpotCol >= this.col - this.num_moves)
                 {
                     theBoard.board[_nextSpotRow][_nextSpotCol] = theBoard.board[this.row][this.col];    //sets the data of the piece to that next spot
+                    theBoard.board[this.row][this.col] = null;
                     this.row = _nextSpotRow;    //sets both the row and col for drawing to the next spot
                     this.col = _nextSpotCol;
                     theBoard.setOnPiece(false);     //sets the highlight off
