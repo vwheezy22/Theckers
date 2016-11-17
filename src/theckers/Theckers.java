@@ -227,7 +227,7 @@ public class Theckers extends JFrame implements Runnable {
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
         int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
 //fill border
-        g.setColor(Color.white);
+        g.setColor(Color.pink); //
         g.fillPolygon(x, y, 4);        
 // draw border
         g.setColor(Color.red);
