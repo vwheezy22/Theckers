@@ -15,7 +15,7 @@ public class Pawn extends Piece{
     final private int MOVES_ALLOWED = 2;
     
     final private String player1ImagePath = "./pawn.png";
-    final private String player2ImagePath = "./pawn.png";
+    final private String player2ImagePath = "./pawn2.png";
     
     
     public Pawn(Color _color, int _row, int _col)

@@ -15,7 +15,7 @@ public class King extends Piece{
     final private int MOVES_ALLOWED = 0;
     
     final private String player1ImagePath = "./king.png";
-    final private String player2ImagePath = "./king.png";
+    final private String player2ImagePath = "./king2.png";
     
     
     public King(Color _color, int _row, int _col)

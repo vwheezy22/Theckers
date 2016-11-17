@@ -213,7 +213,7 @@ public abstract class Piece {
     
     public void attackFunction(int _attackedPieceRow, int _attackedPieceCol, Board theBoard)
     {
-        if(theBoard.board[_attackedPieceRow][_attackedPieceCol] != null && (theBoard.board[_attackedPieceRow][_attackedPieceCol].getPlayer()== theBoard.isPlayer1()))
+        if(theBoard.board[_attackedPieceRow][_attackedPieceCol] != null && (theBoard.board[_attackedPieceRow][_attackedPieceCol].getPlayer()== theBoard.isPlayer1()) )
         {
             if(_attackedPieceRow <= this.row + this.num_moves && _attackedPieceRow >= this.row - this.num_moves)
             {
@@ -231,7 +231,7 @@ public abstract class Piece {
                     {
                         theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()].health = 0;
                     }
-
+                    Audio.playCrashMusic();
                     theBoard.setOnPiece(false);
                 }
             }

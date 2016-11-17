@@ -15,10 +15,6 @@ public class Audio {
         if (backgroundSound != null)
         {
             backgroundSound.stopPlaying = true;
-            if(backgroundSound.donePlaying)
-                backgroundSound = new Sound("./vaporwavemusic.wav");
-            else
-                backgroundSound = new Sound("./vaporwavemusic.wav");
         }
         else
             backgroundSound = new Sound("./vaporwavemusic.wav");
