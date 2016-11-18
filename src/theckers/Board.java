@@ -13,10 +13,13 @@ public class Board {
     public final int ydelta = Window.getHeight2()/NUM_COLUMNS;
     public final static Color player1Color = Color.pink;
     public final static Color player2Color = new Color(0,221,149);
+    public int ydeltaChange = 0;
     
     public Piece board[][] = new Piece[NUM_ROWS][NUM_COLUMNS];     
     private HashMap<String,Piece> deadPieces;
     private boolean player1Turn;
+    private boolean realPlayer1Turn;
+    private boolean win;
     
     private static Image backgroundImage;
     private static boolean checkReset;
@@ -52,6 +55,7 @@ public class Board {
         }
             
             highlightPiece(g);
+            drawTurns(g);
             
             
         
@@ -69,6 +73,8 @@ public class Board {
                 }
             }
         }
+        
+        drawWin(g);
     }
     
     private boolean highlightPiece(Graphics2D g)
@@ -84,6 +90,29 @@ public class Board {
         }
         else
             return(false);
+    }
+    
+    private void drawTurns(Graphics2D g)
+    {
+        if(realPlayer1Turn)
+        {
+            if(TimeCount.update(5))
+            {
+                g.setColor(Color.black);
+                g.setFont(new Font("Broadway",Font.PLAIN,20));
+                g.drawString("Player 1's Turn", Window.getX(Window.getWidth2()/2) - 85, Window.getY(0)); 
+            }
+        }
+        
+        else if(!realPlayer1Turn)
+        {
+            if(TimeCount.update(5))
+            {
+                g.setColor(Color.black);
+                g.setFont(new Font("Broadway",Font.PLAIN,20));
+                g.drawString("Player 2's Turn", Window.getX(Window.getWidth2()/2) - 85, Window.getY(0));
+            }
+        }
     }
     
     public void drawCheckReset(Graphics2D g)
@@ -118,6 +147,11 @@ public class Board {
         return(player1Turn);
     }
     
+    public boolean getWin()
+    {
+        return(win);
+    }
+    
     public void setOnPiece(boolean _onPiece, int row, int col)
     {
         //stores the row and column of the piece you're on when you click
@@ -144,11 +178,12 @@ public class Board {
     
     public void setBackGroundImage()
     {
-        backgroundImage = Toolkit.getDefaultToolkit().getImage("./backgroundImage.gif");
+        backgroundImage = Toolkit.getDefaultToolkit().getImage("./runnable/backgroundImage.gif");
     }
     
     public void initBoard()
     {
+        realPlayer1Turn = true;
         player1Turn = true;
         checkReset = false;
         onPiece = false;
@@ -242,6 +277,12 @@ public class Board {
                 {
                     if(board[row][col].getHealth() <= 0)
                     {
+                        if(board[row][col] instanceof King)
+                        {
+                            setWin(true);
+                            Audio.setCheckBool(false);
+                            Audio.playYeahBoy();
+                        }
                         String returnString = board[row][col].getName() + " " + row + " " + col;   //call the return string to get a dead piece by calling its type and row and col e.g. Pawn 1 5, Defender 2 11
                         System.out.println(returnString);
                         deadPieces.put(returnString,board[row][col]);
@@ -253,11 +294,63 @@ public class Board {
         }
     }
     
+    private void setWin(boolean _win)
+    {
+        win = _win;
+    }
+    
+    public void drawWin(Graphics2D g)
+    {
+        if(win)
+        {
+            g.setColor(player2Color);
+            if(ydeltaChange <= Window.WINDOW_HEIGHT)
+                g.fillRect(0, 0, Window.WINDOW_WIDTH, ydeltaChange);
+            
+            if(ydeltaChange >= Window.WINDOW_HEIGHT)
+            {
+                g.fillRect(0, 0, Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
+                
+                
+                    if(!realPlayer1Turn)
+                    {
+                        g.setColor(player1Color);
+                        g.setFont(new Font("Broadway",Font.PLAIN,50));
+                        g.drawString("PLAYER 1", Window.getX(Window.getWidth2()/2) - 200, Window.getY(Window.getHeight2()/2)); 
+                    }
+
+                    else if(realPlayer1Turn)
+                    {
+                        g.setColor(player2Color);
+                        g.setFont(new Font("Broadway",Font.PLAIN,50));
+                        g.drawString("PLAYER 2", Window.getX(Window.getWidth2()/2) - 200, Window.getY(Window.getHeight2()/2)); 
+                    }
+                    
+                    g.setFont(new Font("Broadway",Font.PLAIN,50));
+                    g.drawString("WON!", Window.getX(Window.getWidth2()/2) - 200, Window.getY(Window.getHeight2()/2) + 75); 
+                    g.setColor(Color.black);
+                    g.drawString("Press ESC to restart!", Window.getX(Window.getWidth2()/2) - 200, Window.getY(Window.getHeight2()/2) + 150); 
+                
+                    if(TimeCount.update(10))
+                    {
+                        g.setColor(player2Color);
+                        g.fillRect(0, 0, Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
+                    }
+            }
+            
+        }
+    }
+    
+    
     public void switchPlayerTurns()
     {
         player1Turn = !player1Turn;
     }
     
+    public void switchRealPlayerTurns()
+    {
+        realPlayer1Turn = !realPlayer1Turn;
+    }
     
     
     

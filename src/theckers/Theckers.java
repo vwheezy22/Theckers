@@ -9,7 +9,7 @@ public class Theckers extends JFrame implements Runnable {
     
     Image image;
     //figure icon image out
-    static Image iconImage = Toolkit.getDefaultToolkit().getImage("./vaporwave.png");
+    static Image iconImage = Toolkit.getDefaultToolkit().getImage("./runnable/vaporwave.png");
     Graphics2D g;
     boolean animateFirstTime = true;
     int zrowTemp;
@@ -22,12 +22,12 @@ public class Theckers extends JFrame implements Runnable {
         Theckers frame = new Theckers();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setTitle("t h e c k e r s");
         //figure icon image out
         frame.setIconImage(iconImage);
         frame.setVisible(true);
-        Audio.playBackGroundMusic();
+        //Audio.playBackGroundMusic();
     }
 
     public Theckers() {
@@ -227,7 +227,7 @@ public class Theckers extends JFrame implements Runnable {
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
         int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
 //fill border
-        g.setColor(Color.pink); //
+        g.setColor(Color.white); //
         g.fillPolygon(x, y, 4);        
 // draw border
         g.setColor(Color.red);
@@ -281,6 +281,7 @@ public class Theckers extends JFrame implements Runnable {
             {
                 board.initBoard();
                 TimeCount.init();
+                Audio.init();
             }
 
     }
@@ -300,6 +301,9 @@ public class Theckers extends JFrame implements Runnable {
         Audio.checkIfStopped();
         
         board.checkDeath();
+        
+        if(board.getWin())
+            board.ydeltaChange+=10;
         
         TimeCount.addTime();
     }

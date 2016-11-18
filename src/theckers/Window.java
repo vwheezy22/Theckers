@@ -2,8 +2,8 @@ package theckers;
 
 class Window
 {
-    static final int XBORDER = 20;
-    static final int YBORDER = 20;
+    static final int XBORDER = 35;
+    static final int YBORDER = 35;
     static final int YTITLE = 25;
     static final int WINDOW_BORDER = 8;
     static final int WINDOW_WIDTH = 2*(WINDOW_BORDER + XBORDER) + 840;

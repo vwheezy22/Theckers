@@ -205,6 +205,7 @@ public abstract class Piece {
                 {
                     theBoard.board[_attackedPieceRow][_attackedPieceCol].health -= this.rangeAttack;
                     theBoard.setOnPiece(false);
+                    theBoard.switchRealPlayerTurns();
                     Audio.playSniperSound();
                 }
             }
@@ -213,7 +214,7 @@ public abstract class Piece {
     
     public void attackFunction(int _attackedPieceRow, int _attackedPieceCol, Board theBoard)
     {
-        if(theBoard.board[_attackedPieceRow][_attackedPieceCol] != null && (theBoard.board[_attackedPieceRow][_attackedPieceCol].getPlayer()== theBoard.isPlayer1()) )
+        if(theBoard.board[_attackedPieceRow][_attackedPieceCol] != null && (theBoard.board[_attackedPieceRow][_attackedPieceCol].getPlayer() == theBoard.isPlayer1()) )
         {
             if(_attackedPieceRow <= this.row + this.num_moves && _attackedPieceRow >= this.row - this.num_moves)
             {
@@ -231,8 +232,9 @@ public abstract class Piece {
                     {
                         theBoard.board[theBoard.getOnPieceRow()][theBoard.getOnPieceCol()].health = 0;
                     }
-                    //Audio.playCrashMusic();
+                    Audio.playCrashMusic();
                     theBoard.setOnPiece(false);
+                    theBoard.switchRealPlayerTurns();
                 }
             }
         }
@@ -255,6 +257,7 @@ public abstract class Piece {
                     this.row = _nextSpotRow;    //sets both the row and col for drawing to the next spot
                     this.col = _nextSpotCol;
                     theBoard.setOnPiece(false);     //sets the highlight off
+                    theBoard.switchRealPlayerTurns();
                 }
             }
         }

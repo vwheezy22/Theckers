@@ -14,8 +14,8 @@ public class King extends Piece{
     final private int RANGE_ATTACK = 250;
     final private int MOVES_ALLOWED = 0;
     
-    final private String player1ImagePath = "./king.png";
-    final private String player2ImagePath = "./king2.png";
+    final private String player1ImagePath = "./runnable/king.png";
+    final private String player2ImagePath = "./runnable/king2.png";
     
     
     public King(Color _color, int _row, int _col)
